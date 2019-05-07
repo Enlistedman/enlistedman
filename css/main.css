@@ -1753,6 +1753,19 @@ pre .javascript .function {
   -ms-transform: rotate(360deg);
   -transform: rotate(360deg);
 }
+.site-author-name {
+  margin: 0;
+  text-align: center;
+  color: #222;
+  font-weight: 600;
+}
+​,
+.site-description {
+  margin-top: 0;
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+}
 .site-state {
   overflow: hidden;
   line-height: 1.4;
@@ -1821,7 +1834,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2bff09;
+  background: #ff9822;
 }
 .links-of-blogroll {
   font-size: 13px;
