@@ -92,19 +92,20 @@
 
 
 
-<meta name="description" content="概述 author：香港中文大学 phd 陈恺    主要思想：    ①先前的anchor是在feature map上的每个点都设定并计算，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行多尺度anchor的设定，减少了计算量。 ②使用了iou loss。">
+<meta name="description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
 <meta name="keywords" content="detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GARPN-CVPR19-detection">
 <meta property="og:url" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="概述 author：香港中文大学 phd 陈恺    主要思想：    ①先前的anchor是在feature map上的每个点都设定并计算，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行多尺度anchor的设定，减少了计算量。 ②使用了iou loss。">
+<meta property="og:description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/network.PNG">
-<meta property="og:updated_time" content="2019-05-08T03:26:25.093Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/anchor_location.PNG">
+<meta property="og:updated_time" content="2019-05-08T15:55:12.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GARPN-CVPR19-detection">
-<meta name="twitter:description" content="概述 author：香港中文大学 phd 陈恺    主要思想：    ①先前的anchor是在feature map上的每个点都设定并计算，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行多尺度anchor的设定，减少了计算量。 ②使用了iou loss。">
+<meta name="twitter:description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
 <meta name="twitter:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/network.PNG">
 
 
@@ -369,17 +370,65 @@
       
 
       
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ol>
-<li>author：香港中文大学 phd 陈恺   </li>
-<li>主要思想：   <ul>
-<li>①先前的anchor是在feature map上的每个点都设定并计算，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行多尺度anchor的设定，减少了计算量。</li>
-<li>②使用了iou loss。</li>
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><ol>
+<li>主要思想     <ul>
+<li>先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。</li>
+<li>anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature map进行变换，以生成新的feature map。</li>
+<li>在新的feature map上进行分类和回归。</li>
+</ul>
+</li>
+<li>效果<ul>
+<li>在resnet50-fpn作为backbone，其recall(AR)提高了9.1个点，mAP提高了1.2-2.7个点。</li>
 </ul>
 </li>
 </ol>
 <a id="more"></a>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
-<li>网络结构图如下。<br> <img src="/2019/05/08/GARPN-CVPR19-detection/network.PNG" alt title="网络结构"></li>
+<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><ul>
+<li>之前的anchor尺度/比例(超参)需要人为设定，设定不好对性能影响较大。</li>
+<li>前anchor方法中的大多数anchor都分布在背景区域，对于proposal没有作用，徒增计算量。</li>
+<li>数据集中的object形变较大，预定义的anchor不一定能满足其object尺寸。</li>
+<li>所有。出现了本文稀疏，形状可变的anchor。</li>
+</ul>
+<h1 id="Formulation"><a href="#Formulation" class="headerlink" title="Formulation"></a>Formulation</h1><ul>
+<li>p(x,y,w,h|I) = p(x,y|I)p(w,h|x,y,I)<br>将anchor的坐标概率分布分为两个条件概率，即先进行anchor的位置预测，再进行形状预测。</li>
+</ul>
+<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><h2 id="network-architecture"><a href="#network-architecture" class="headerlink" title="network architecture"></a>network architecture</h2><p><img src="/2019/05/08/GARPN-CVPR19-detection/network.PNG" alt="网络结构" title="network architecture">   </p>
+<h2 id="network-detailed"><a href="#network-detailed" class="headerlink" title="network detailed"></a>network detailed</h2><ul>
+<li>主要为两部分：anchor生成+feature调整</li>
+<li>anchor生成部分：<br>F1(feature map)通过N_L分支预测anchor location,通过N_s预测anchor shape。</li>
+<li>feature adaption:<br>使用anchor信息生成可变形卷积的offset，在使用可变形卷积对feature map进行调整，以生成新的feature map。</li>
+</ul>
+<h2 id="anchor-location-predict"><a href="#anchor-location-predict" class="headerlink" title="anchor location predict"></a>anchor location predict</h2><ul>
+<li>二分类问题</li>
+<li>在feature map上预测可能出现object中心点的位置(对应原图的一区域)，该中心区域为正样本，超出gt的区域作为负样本，gt和中心区域的部分忽略。</li>
+<li>N_L子网络，在feature map上使用1x1卷积计算出一个score map,再使用sigmoid将score转换为概率。</li>
+<li><img src="/2019/05/08/GARPN-CVPR19-detection/anchor_location.PNG" alt="anchor定位" title="anchor location"></li>
+</ul>
+<h2 id="anchor-shape-predict"><a href="#anchor-shape-predict" class="headerlink" title="anchor shape predict"></a>anchor shape predict</h2><ul>
+<li>回归问题</li>
+<li>该部分使用IOU loss。设定了几组常见的w,h,然后计算anchors与所有gt的IOU,然后将该anchor分配给IOU最大的gt。</li>
+<li>w = σ·s·e_dw, h = σ·s·e_dh<br>N_s子网络预测输出dw,dh；dw,dh通过上式进行变换得到w,h。其中，s为stride，σ为经验比例因子(文中设定为8)。</li>
+<li>This nonlinear transformation projects the output space from approximate [0,1000] to [−1,1], leading to an easier and stable learning target. 这句没太懂，是原来直接预测w,h(范围在[0,1000]),现在通过预测dw,dh(范围在[-1,1])经e后可达到原先效果？<strong>这里不太理解</strong></li>
+</ul>
+<h2 id="feature-adaption"><a href="#feature-adaption" class="headerlink" title="feature adaption"></a>feature adaption</h2><ul>
+<li>为什么呢？文章说是每个anchor都有自己的大小，与feature不是很好的匹配；而且原本的feature map并不知道预测的anchor的形状，但是分类和回归确是基于anchor做的？所以把anchor的形状信息融入到了feature map中?<strong>这里不太理解</strong></li>
+<li>N_t子网络(使用3x3的可变卷积),根据anchor shape预测deformable conv的offset(offset是通过anchor的w和h经过一个1x1conv得到的),去做一个feature map的变换，以得到新的feature map。<strong>offset计算要看代码</strong></li>
+<li>在新的feature map上进行分类和回归。</li>
+<li>FA提升了近5个点。</li>
+</ul>
+<h1 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h1><p>&ensp;&ensp;问题：proposal质量提升很多，但是detector上的性能提升有限。</p>
+<ol>
+<li>减少proposal的数量</li>
+<li>增大训练时正样本IOU阈值(重要，提升了2.7个点)</li>
+</ol>
+<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="Deformable-conv"><a href="#Deformable-conv" class="headerlink" title="Deformable conv"></a>Deformable conv</h2><ul>
+<li><a href="https://www.zhihu.com/question/57493889" target="_blank" rel="noopener">Deformable conv简介-CVPR2017</a></li>
+</ul>
+<h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><ul>
+<li>R(recall): 查全率，R = 预测出的正样本/原数据集中的所有正样本</li>
+<li>AR : 平均查全率</li>
+<li>P(precision)：查准率，P = 预测中的正样本/预测出的所有样本</li>
+<li>AP : 平均查准率</li>
 </ul>
 
       
@@ -553,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Formulation"><span class="nav-number">3.</span> <span class="nav-text">Formulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">4.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#network-architecture"><span class="nav-number">4.1.</span> <span class="nav-text">network architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#network-detailed"><span class="nav-number">4.2.</span> <span class="nav-text">network detailed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-location-predict"><span class="nav-number">4.3.</span> <span class="nav-text">anchor location predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-shape-predict"><span class="nav-number">4.4.</span> <span class="nav-text">anchor shape predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-adaption"><span class="nav-number">4.5.</span> <span class="nav-text">feature adaption</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tricks"><span class="nav-number">5.</span> <span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">6.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deformable-conv"><span class="nav-number">6.1.</span> <span class="nav-text">Deformable conv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价标准"><span class="nav-number">6.2.</span> <span class="nav-text">评价标准</span></a></li></ol></li></ol></div>
             
 
           </div>

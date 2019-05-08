@@ -369,11 +369,15 @@
 
       
         
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ol>
-<li>author：香港中文大学 phd 陈恺   </li>
-<li>主要思想：   <ul>
-<li>①先前的anchor是在feature map上的每个点都设定并计算，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行多尺度anchor的设定，减少了计算量。</li>
-<li>②使用了iou loss。</li>
+          <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><ol>
+<li>主要思想     <ul>
+<li>先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。</li>
+<li>anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature map进行变换，以生成新的feature map。</li>
+<li>在新的feature map上进行分类和回归。</li>
+</ul>
+</li>
+<li>效果<ul>
+<li>在resnet50-fpn作为backbone，其recall(AR)提高了9.1个点，mAP提高了1.2-2.7个点。</li>
 </ul>
 </li>
 </ol>
