@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="detection,">
+  <meta name="keywords" content="pytorch,">
 
 
 
@@ -92,21 +92,18 @@
 
 
 
-<meta name="description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
-<meta name="keywords" content="detection">
+<meta name="description" content="基础Tensor定义 tensor与numpy的ndarrays类似，可以看作是一个高维数组，但tensor可以使用GPU加速。tensor不支持的操作可以转为numpy数组处理后再转回tensor。tensor操作 函数名_()：会改变tensor本身的值。    函数名()：返回一个新tensor。tensor和numpy转换 tensor 2 numpy: tensor.numpy()">
+<meta name="keywords" content="pytorch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GARPN-CVPR19-detection">
-<meta property="og:url" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/index.html">
+<meta property="og:title" content="Pytorch学习记录">
+<meta property="og:url" content="http://yoursite.com/2019/05/10/Pytorch学习记录/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
+<meta property="og:description" content="基础Tensor定义 tensor与numpy的ndarrays类似，可以看作是一个高维数组，但tensor可以使用GPU加速。tensor不支持的操作可以转为numpy数组处理后再转回tensor。tensor操作 函数名_()：会改变tensor本身的值。    函数名()：返回一个新tensor。tensor和numpy转换 tensor 2 numpy: tensor.numpy()">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/network.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/anchor_location.PNG">
-<meta property="og:updated_time" content="2019-05-10T06:49:36.014Z">
+<meta property="og:updated_time" content="2019-05-10T14:34:23.187Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GARPN-CVPR19-detection">
-<meta name="twitter:description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/network.PNG">
+<meta name="twitter:title" content="Pytorch学习记录">
+<meta name="twitter:description" content="基础Tensor定义 tensor与numpy的ndarrays类似，可以看作是一个高维数组，但tensor可以使用GPU加速。tensor不支持的操作可以转为numpy数组处理后再转回tensor。tensor操作 函数名_()：会改变tensor本身的值。    函数名()：返回一个新tensor。tensor和numpy转换 tensor 2 numpy: tensor.numpy()">
 
 
 
@@ -136,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/10/Pytorch学习记录/">
 
 
 
 
 
-  <title>GARPN-CVPR19-detection | LJK' Notes</title>
+  <title>Pytorch学习记录 | LJK' Notes</title>
   
 
 
@@ -281,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/Pytorch学习记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -298,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GARPN-CVPR19-detection</h1>
+          <h1 class="post-title" itemprop="name headline">Pytorch学习记录</h1>
         
 
         <div class="post-meta">
@@ -310,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T10:36:24+08:00">
-                2019-05-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-10T16:13:24+08:00">
+                2019-05-10
               </time>
             
 
@@ -333,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/papers/" itemprop="url" rel="index">
-                    <span itemprop="name">papers</span>
+                  <a href="/categories/pytorch/" itemprop="url" rel="index">
+                    <span itemprop="name">pytorch</span>
                   </a>
                 </span>
 
@@ -370,73 +367,30 @@
       
 
       
-        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><ol>
-<li>主要思想     <ul>
-<li>先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。</li>
-<li>anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature map进行变换，以生成新的feature map。</li>
-<li>在新的feature map上进行分类和回归。</li>
+        <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>tensor与numpy的ndarrays类似，可以看作是一个高维数组，但tensor可以使用GPU加速。tensor不支持的操作可以转为numpy数组处理后再转回tensor。<h3 id="tensor操作"><a href="#tensor操作" class="headerlink" title="tensor操作"></a>tensor操作</h3></li>
+<li>函数名_()：会改变tensor本身的值。   </li>
+<li>函数名()：返回一个新tensor。<h3 id="tensor和numpy转换"><a href="#tensor和numpy转换" class="headerlink" title="tensor和numpy转换"></a>tensor和numpy转换</h3></li>
+<li>tensor 2 numpy: tensor.numpy()    </li>
+<li>numpy 2 tensor：torch.from_numpy(a)   </li>
+<li>这里的tensor和numpy共享内存，一个变另一个也变</li>
 </ul>
-</li>
-<li>效果<ul>
-<li>在resnet50-fpn作为backbone，其recall(AR)提高了9.1个点，mAP提高了1.2-2.7个点。</li>
+<h2 id="Autograd"><a href="#Autograd" class="headerlink" title="Autograd"></a>Autograd</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>可以为tensor上的所有操作提供微分，避免手动计算导数。<h3 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h3></li>
+<li>tensor被封装为Variable之后，可以调用.backward实现反向传播，自动计算所有梯度。   </li>
+<li>属性<br>data：Variable所含的tensor<br>grad：保存Variable所含的grad(是Variable)<br>grad_fn：指向一个Function对象，用来计算梯度   <h3 id="梯度累加"><a href="#梯度累加" class="headerlink" title="梯度累加"></a>梯度累加</h3></li>
+<li>grad在反向传播中会累加，所以再每次进行反向传播之前要先将梯度清0。</li>
 </ul>
-</li>
-<li>paper: <a href="https://arxiv.org/pdf/1901.03278.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1901.03278.pdf</a></li>
+<h1 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h1><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><h2 id="数据集创建"><a href="#数据集创建" class="headerlink" title="数据集创建"></a>数据集创建</h2><h2 id="网络结构搭建"><a href="#网络结构搭建" class="headerlink" title="网络结构搭建"></a>网络结构搭建</h2><h3 id="定义网络"><a href="#定义网络" class="headerlink" title="定义网络"></a>定义网络</h3><ol>
+<li>继承nn.Module，实现构造函数<strong>init</strong>()   </li>
 </ol>
-<a id="more"></a>
-<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><ul>
-<li>之前的anchor尺度/比例(超参)需要人为设定，设定不好对性能影响较大。</li>
-<li>前anchor方法中的大多数anchor都分布在背景区域，对于proposal没有作用，徒增计算量。</li>
-<li>数据集中的object形变较大，预定义的anchor不一定能满足其object尺寸。</li>
-<li>所有。出现了本文稀疏，形状可变的anchor。</li>
+<ul>
+<li>执行父类的构造函数super(类名,self).<strong>init</strong>()</li>
+<li>定义需要的网络结构</li>
+<li>实现forward(self,input)方法   </li>
+<li>将input传入网络，并返回</li>
 </ul>
-<h1 id="Formulation"><a href="#Formulation" class="headerlink" title="Formulation"></a>Formulation</h1><ul>
-<li>p(x,y,w,h|I) = p(x,y|I)p(w,h|x,y,I)<br>将anchor的坐标概率分布分为两个条件概率，即先进行anchor的位置预测，再进行形状预测。</li>
-</ul>
-<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><h2 id="network-architecture"><a href="#network-architecture" class="headerlink" title="network architecture"></a>network architecture</h2><p><img src="/2019/05/08/GARPN-CVPR19-detection/network.PNG" alt="网络结构" title="network architecture">   </p>
-<h2 id="network-detailed"><a href="#network-detailed" class="headerlink" title="network detailed"></a>network detailed</h2><ul>
-<li>主要为两部分：anchor生成+feature调整</li>
-<li>anchor生成部分：<br>F1(feature map)通过N_L分支预测anchor location,通过N_s预测anchor shape。</li>
-<li>feature adaption:<br>使用anchor信息生成可变形卷积的offset，在使用可变形卷积对feature map进行调整，以生成新的feature map。</li>
-</ul>
-<h2 id="anchor-location-predict"><a href="#anchor-location-predict" class="headerlink" title="anchor location predict"></a>anchor location predict</h2><ul>
-<li>二分类问题</li>
-<li>在feature map上预测可能出现object中心点的位置(对应原图的一区域)，该中心区域为正样本，超出gt的区域作为负样本，gt和中心区域的部分忽略。</li>
-<li>N_L子网络，在feature map上使用1x1卷积计算出一个score map,再使用sigmoid将score转换为概率。</li>
-<li><img src="/2019/05/08/GARPN-CVPR19-detection/anchor_location.PNG" alt="anchor定位" title="anchor location"></li>
-</ul>
-<h2 id="anchor-shape-predict"><a href="#anchor-shape-predict" class="headerlink" title="anchor shape predict"></a>anchor shape predict</h2><ul>
-<li>回归问题</li>
-<li>该部分使用IOU loss。设定了几组常见的w,h,然后计算anchors与所有gt的IOU,然后将该anchor分配给IOU最大的gt。</li>
-<li>w = σ·s·e_dw, h = σ·s·e_dh<br>N_s子网络预测输出dw,dh；dw,dh通过上式进行变换得到w,h。其中，s为stride，σ为经验比例因子(文中设定为8)。</li>
-<li>This nonlinear transformation projects the output space from approximate [0,1000] to [−1,1], leading to an easier and stable learning target. 这句没太懂，是原来直接预测w,h(范围在[0,1000]),现在通过预测dw,dh(范围在[-1,1])经e后可达到原先效果？<strong>这里不太理解</strong></li>
-</ul>
-<h2 id="feature-adaption"><a href="#feature-adaption" class="headerlink" title="feature adaption"></a>feature adaption</h2><ul>
-<li>为什么呢？文章说是每个anchor都有自己的大小，与feature不是很好的匹配；而且原本的feature map并不知道预测的anchor的形状，但是分类和回归确是基于anchor做的？所以把anchor的形状信息融入到了feature map中?<strong>这里不太理解</strong></li>
-<li>N_t子网络(使用3x3的可变卷积),根据anchor shape预测deformable conv的offset(offset是通过anchor的w和h经过一个1x1conv得到的),去做一个feature map的变换，以得到新的feature map。<strong>offset计算要看代码</strong></li>
-<li>在新的feature map上进行分类和回归。</li>
-<li>FA提升了近5个点。</li>
-</ul>
-<h1 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h1><p>&ensp;&ensp;问题：proposal质量提升很多，但是detector上的性能提升有限。</p>
-<ol>
-<li>减少proposal的数量</li>
-<li>增大训练时正样本IOU阈值(重要，提升了2.7个点)</li>
-</ol>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
-<li>论文假设图像中的目标是稀疏的。如果是稠密图像，比如车站或广场的拥挤人群，检测效果有待检验。</li>
-<li>每一个点只产生一个anchor，那么对于那些目标中心重合，即一个点需要负责检测两个目标，似乎无法处理。</li>
-<li>采用deformable卷积会相对地降低速度，同时根据DCN v2的分析，在deformable卷积中加入可调节的机制可能会更好。</li>
-</ol>
-<h2 id="Deformable-conv"><a href="#Deformable-conv" class="headerlink" title="Deformable conv"></a>Deformable conv</h2><ul>
-<li><a href="https://www.zhihu.com/question/57493889" target="_blank" rel="noopener">Deformable conv简介-CVPR2017</a></li>
-</ul>
-<h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><ul>
-<li>R(recall): 查全率，R = 预测出的正样本/原数据集中的所有正样本</li>
-<li>AR : 平均查全率</li>
-<li>P(precision)：查准率，P = 预测中的正样本/预测出的所有样本</li>
-<li>AP : 平均查准率</li>
-</ul>
-
+<h2 id="Loss定义"><a href="#Loss定义" class="headerlink" title="Loss定义"></a>Loss定义</h2><h2 id="模型保存"><a href="#模型保存" class="headerlink" title="模型保存"></a>模型保存</h2><h2 id="Train"><a href="#Train" class="headerlink" title="Train"></a>Train</h2><h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2>
       
     </div>
     
@@ -453,7 +407,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/detection/" rel="tag"># detection</a>
+            <a href="/tags/pytorch/" rel="tag"># pytorch</a>
           
         </div>
       
@@ -466,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/07/每日计划/" rel="next" title="每日计划">
-                <i class="fa fa-chevron-left"></i> 每日计划
+              <a href="/2019/05/09/GIOU-CVPR19-detection/" rel="next" title="GIOU-CVPR19-detection">
+                <i class="fa fa-chevron-left"></i> GIOU-CVPR19-detection
               </a>
             
           </div>
@@ -475,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/09/GIOU-CVPR19-detection/" rel="prev" title="GIOU-CVPR19-detection">
-                GIOU-CVPR19-detection <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -612,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Formulation"><span class="nav-number">3.</span> <span class="nav-text">Formulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">4.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#network-architecture"><span class="nav-number">4.1.</span> <span class="nav-text">network architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#network-detailed"><span class="nav-number">4.2.</span> <span class="nav-text">network detailed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-location-predict"><span class="nav-number">4.3.</span> <span class="nav-text">anchor location predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-shape-predict"><span class="nav-number">4.4.</span> <span class="nav-text">anchor shape predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-adaption"><span class="nav-number">4.5.</span> <span class="nav-text">feature adaption</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tricks"><span class="nav-number">5.</span> <span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">6.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">6.1.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deformable-conv"><span class="nav-number">6.2.</span> <span class="nav-text">Deformable conv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价标准"><span class="nav-number">6.3.</span> <span class="nav-text">评价标准</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor"><span class="nav-number">1.1.</span> <span class="nav-text">Tensor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensor操作"><span class="nav-number">1.1.2.</span> <span class="nav-text">tensor操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensor和numpy转换"><span class="nav-number">1.1.3.</span> <span class="nav-text">tensor和numpy转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autograd"><span class="nav-number">1.2.</span> <span class="nav-text">Autograd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variable"><span class="nav-number">1.2.2.</span> <span class="nav-text">Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度累加"><span class="nav-number">1.2.3.</span> <span class="nav-text">梯度累加</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#教程"><span class="nav-number">2.</span> <span class="nav-text">教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据预处理"><span class="nav-number">2.1.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集创建"><span class="nav-number">2.2.</span> <span class="nav-text">数据集创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构搭建"><span class="nav-number">2.3.</span> <span class="nav-text">网络结构搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义网络"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss定义"><span class="nav-number">2.4.</span> <span class="nav-text">Loss定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型保存"><span class="nav-number">2.5.</span> <span class="nav-text">模型保存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Train"><span class="nav-number">2.6.</span> <span class="nav-text">Train</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test"><span class="nav-number">2.7.</span> <span class="nav-text">Test</span></a></li></ol></li></ol></div>
             
 
           </div>
