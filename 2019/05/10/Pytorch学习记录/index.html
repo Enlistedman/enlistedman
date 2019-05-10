@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="LJK&#39; Notes">
 <meta property="og:description" content="基础Tensor定义 tensor与numpy的ndarrays类似，可以看作是一个高维数组，但tensor可以使用GPU加速。tensor不支持的操作可以转为numpy数组处理后再转回tensor。tensor操作 函数名_()：会改变tensor本身的值。    函数名()：返回一个新tensor。tensor和numpy转换 tensor 2 numpy: tensor.numpy()">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T14:34:23.187Z">
+<meta property="og:updated_time" content="2019-05-10T14:50:33.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch学习记录">
 <meta name="twitter:description" content="基础Tensor定义 tensor与numpy的ndarrays类似，可以看作是一个高维数组，但tensor可以使用GPU加速。tensor不支持的操作可以转为numpy数组处理后再转回tensor。tensor操作 函数名_()：会改变tensor本身的值。    函数名()：返回一个新tensor。tensor和numpy转换 tensor 2 numpy: tensor.numpy()">
@@ -375,6 +375,7 @@
 <li>numpy 2 tensor：torch.from_numpy(a)   </li>
 <li>这里的tensor和numpy共享内存，一个变另一个也变</li>
 </ul>
+<a id="more"></a>
 <h2 id="Autograd"><a href="#Autograd" class="headerlink" title="Autograd"></a>Autograd</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><ul>
 <li>可以为tensor上的所有操作提供微分，避免手动计算导数。<h3 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h3></li>
 <li>tensor被封装为Variable之后，可以调用.backward实现反向传播，自动计算所有梯度。   </li>

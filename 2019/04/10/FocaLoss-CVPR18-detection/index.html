@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="LJK&#39; Notes">
 <meta property="og:description" content="Overview主要思想 本文认为single stage detection结果不够好的原因是    太多的anchor会导致正负样本极度不平衡 虽然简单样本的loss很低，但是由于简单样本过多，所以对loss仍有较大的影响导致收敛不够好   本文做法：直接loss decay那些简单样本的权重，使训练更加关注有意义的样本效果  OthersCross Entropy相关概念 信息量    一个">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-10T14:35:37.046Z">
+<meta property="og:updated_time" content="2019-05-10T14:48:55.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FocaLoss-CVPR18-detection">
 <meta name="twitter:description" content="Overview主要思想 本文认为single stage detection结果不够好的原因是    太多的anchor会导致正负样本极度不平衡 虽然简单样本的loss很低，但是由于简单样本过多，所以对loss仍有较大的影响导致收敛不够好   本文做法：直接loss decay那些简单样本的权重，使训练更加关注有意义的样本效果  OthersCross Entropy相关概念 信息量    一个">
@@ -384,7 +384,7 @@
 <li>熵就是信息量的期望值（E(I(x))），是一个随机变量确定性的度量。熵越大，变量的取值越不确定，反之就越确定。</li>
 </ul>
 </li>
-<li>相对熵（KL散度/KL距离）   <ul>
+<li>相对熵（KL散度 / KL距离 / 信息增益）   <ul>
 <li>两个随机分布间距离的度量<h2 id="OHEM-Online-Hard-Example-Mining-CVPR16"><a href="#OHEM-Online-Hard-Example-Mining-CVPR16" class="headerlink" title="OHEM(Online Hard Example Mining)-CVPR16"></a>OHEM(Online Hard Example Mining)-CVPR16</h2></li>
 </ul>
 </li>
