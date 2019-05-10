@@ -102,7 +102,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/network.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/anchor_location.PNG">
-<meta property="og:updated_time" content="2019-05-08T15:55:12.005Z">
+<meta property="og:updated_time" content="2019-05-10T06:49:36.014Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GARPN-CVPR19-detection">
 <meta name="twitter:description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
@@ -381,6 +381,7 @@
 <li>在resnet50-fpn作为backbone，其recall(AR)提高了9.1个点，mAP提高了1.2-2.7个点。</li>
 </ul>
 </li>
+<li>paper: <a href="https://arxiv.org/pdf/1901.03278.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1901.03278.pdf</a></li>
 </ol>
 <a id="more"></a>
 <h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><ul>
@@ -421,7 +422,12 @@
 <li>减少proposal的数量</li>
 <li>增大训练时正样本IOU阈值(重要，提升了2.7个点)</li>
 </ol>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="Deformable-conv"><a href="#Deformable-conv" class="headerlink" title="Deformable conv"></a>Deformable conv</h2><ul>
+<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
+<li>论文假设图像中的目标是稀疏的。如果是稠密图像，比如车站或广场的拥挤人群，检测效果有待检验。</li>
+<li>每一个点只产生一个anchor，那么对于那些目标中心重合，即一个点需要负责检测两个目标，似乎无法处理。</li>
+<li>采用deformable卷积会相对地降低速度，同时根据DCN v2的分析，在deformable卷积中加入可调节的机制可能会更好。</li>
+</ol>
+<h2 id="Deformable-conv"><a href="#Deformable-conv" class="headerlink" title="Deformable conv"></a>Deformable conv</h2><ul>
 <li><a href="https://www.zhihu.com/question/57493889" target="_blank" rel="noopener">Deformable conv简介-CVPR2017</a></li>
 </ul>
 <h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><ul>
@@ -469,6 +475,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/09/GIOU-CVPR19-detection/" rel="prev" title="GIOU-CVPR19-detection">
+                GIOU-CVPR19-detection <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -547,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -602,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Formulation"><span class="nav-number">3.</span> <span class="nav-text">Formulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">4.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#network-architecture"><span class="nav-number">4.1.</span> <span class="nav-text">network architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#network-detailed"><span class="nav-number">4.2.</span> <span class="nav-text">network detailed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-location-predict"><span class="nav-number">4.3.</span> <span class="nav-text">anchor location predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-shape-predict"><span class="nav-number">4.4.</span> <span class="nav-text">anchor shape predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-adaption"><span class="nav-number">4.5.</span> <span class="nav-text">feature adaption</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tricks"><span class="nav-number">5.</span> <span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">6.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deformable-conv"><span class="nav-number">6.1.</span> <span class="nav-text">Deformable conv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价标准"><span class="nav-number">6.2.</span> <span class="nav-text">评价标准</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Formulation"><span class="nav-number">3.</span> <span class="nav-text">Formulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">4.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#network-architecture"><span class="nav-number">4.1.</span> <span class="nav-text">network architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#network-detailed"><span class="nav-number">4.2.</span> <span class="nav-text">network detailed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-location-predict"><span class="nav-number">4.3.</span> <span class="nav-text">anchor location predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-shape-predict"><span class="nav-number">4.4.</span> <span class="nav-text">anchor shape predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-adaption"><span class="nav-number">4.5.</span> <span class="nav-text">feature adaption</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tricks"><span class="nav-number">5.</span> <span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">6.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">6.1.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deformable-conv"><span class="nav-number">6.2.</span> <span class="nav-text">Deformable conv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价标准"><span class="nav-number">6.3.</span> <span class="nav-text">评价标准</span></a></li></ol></li></ol></div>
             
 
           </div>
