@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="网络结构code: https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271model setting backbone : Resnet50 neck : FPN head : GARPN-Head12345678910111213141516171819">
+<meta name="description" content="code: https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271">
 <meta name="keywords" content="code">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GARPN-CVPR19-code">
 <meta property="og:url" content="http://yoursite.com/2019/05/16/GARPN-CVPR19-code/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="网络结构code: https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271model setting backbone : Resnet50 neck : FPN head : GARPN-Head12345678910111213141516171819">
+<meta property="og:description" content="code: https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-19T03:23:47.786Z">
+<meta property="og:updated_time" content="2019-05-19T05:08:30.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GARPN-CVPR19-code">
-<meta name="twitter:description" content="网络结构code: https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271model setting backbone : Resnet50 neck : FPN head : GARPN-Head12345678910111213141516171819">
+<meta name="twitter:description" content="code: https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271">
 
 
 
@@ -367,8 +367,11 @@
       
 
       
-        <h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><h2 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h2><ul>
-<li><a href="https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271" target="_blank" rel="noopener">https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271</a><h2 id="model-setting"><a href="#model-setting" class="headerlink" title="model setting"></a>model setting</h2></li>
+        <h2 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h2><ul>
+<li><a href="https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271" target="_blank" rel="noopener">https://github.com/open-mmlab/mmdetection/pull/594/commits/3847c41b839d758364483610093689f49b35a271</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><h2 id="model-setting"><a href="#model-setting" class="headerlink" title="model setting"></a>model setting</h2><ul>
 <li>backbone : Resnet50</li>
 <li>neck : FPN</li>
 <li>head : GARPN-Head<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># model settings</span><br><span class="line">model = dict(</span><br><span class="line">    type=&apos;RPN&apos;,</span><br><span class="line">    pretrained=&apos;open-mmlab://resnet50_caffe&apos;,</span><br><span class="line">    backbone=dict(</span><br><span class="line">        type=&apos;ResNet&apos;,</span><br><span class="line">        depth=50,</span><br><span class="line">        num_stages=4,</span><br><span class="line">        out_indices=(0, 1, 2, 3),</span><br><span class="line">        frozen_stages=1,</span><br><span class="line">        normalize=dict(type=&apos;BN&apos;, frozen=True),</span><br><span class="line">        norm_eval=True,</span><br><span class="line">        style=&apos;caffe&apos;),</span><br><span class="line">    neck=dict(</span><br><span class="line">        type=&apos;FPN&apos;,</span><br><span class="line">        in_channels=[256, 512, 1024, 2048],</span><br><span class="line">        out_channels=256,</span><br><span class="line">        num_outs=5),</span><br><span class="line">    rpn_head=dict(</span><br><span class="line">        type=&apos;GARPNHead&apos;,</span><br><span class="line">        in_channels=256,</span><br><span class="line">        feat_channels=256,</span><br><span class="line">        octave_base_scale=8,</span><br><span class="line">        scales_per_octave=3,</span><br><span class="line">        octave_ratios=[0.5, 1.0, 2.0],</span><br><span class="line">        anchor_strides=[4, 8, 16, 32, 64],</span><br><span class="line">        anchor_base_sizes=None,</span><br><span class="line">        anchoring_means=[.0, .0, .0, .0],</span><br><span class="line">        anchoring_stds=[0.07, 0.07, 0.14, 0.14],</span><br><span class="line">        target_means=(.0, .0, .0, .0),</span><br><span class="line">        target_stds=[0.07, 0.07, 0.11, 0.11],</span><br><span class="line">        loc_focal_loss=True,</span><br><span class="line">        cls_sigmoid_loss=True,</span><br><span class="line">        cls_focal_loss=False))</span><br></pre></td></tr></table></figure>
@@ -546,7 +549,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络结构"><span class="nav-number">1.</span> <span class="nav-text">网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">1.1.</span> <span class="nav-text">code:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#model-setting"><span class="nav-number">1.2.</span> <span class="nav-text">model setting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#train-amp-test-setting"><span class="nav-number">1.3.</span> <span class="nav-text">train &amp; test setting</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">1.</span> <span class="nav-text">code:</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#网络结构"><span class="nav-number"></span> <span class="nav-text">网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#model-setting"><span class="nav-number">1.</span> <span class="nav-text">model setting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#train-amp-test-setting"><span class="nav-number">2.</span> <span class="nav-text">train &amp; test setting</span></a></li></ol></li></div>
             
 
           </div>
