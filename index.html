@@ -1253,8 +1253,7 @@
 
       
         
-          
-            <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><ol>
+          <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><ol>
 <li>本文认为single stage detection结果不够好的原因是   <ul>
 <li>太多的anchor会导致正负样本极度不平衡</li>
 <li>虽然简单样本的loss很低，但是由于简单样本过多，所以对loss仍有较大的影响导致收敛不够好</li>
@@ -1262,22 +1261,13 @@
 </li>
 <li>本文做法：直接loss decay那些简单样本的权重，使训练更加关注有意义的样本<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2></li>
 </ol>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="Cross-Entropy"><a href="#Cross-Entropy" class="headerlink" title="Cross Entropy"></a>Cross Entropy</h2><h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><ol>
-<li>信息量   <ul>
-<li>一个事件发生的概率（P(x)）越大，那么它所携带的信息量（I(x) = -log(P(x))）就越小。可以说，一件事发生的概率很小，一旦发生了会带来很大的信息量。</li>
-</ul>
-</li>
-<li>熵   <ul>
-<li>熵就是信息量的期望值（E(I(x))），是一个随机变量确定性的度量。熵越大，变量的取值越不确定，反之就越确定。</li>
-</ul>
-</li>
-<li>相对熵（KL散度 / KL距离 / 信息增益）   <ul>
-<li>两个随机分布间距离的度量<h2 id="OHEM-Online-Hard-Example-Mining-CVPR16"><a href="#OHEM-Online-Hard-Example-Mining-CVPR16" class="headerlink" title="OHEM(Online Hard Example Mining)-CVPR16"></a>OHEM(Online Hard Example Mining)-CVPR16</h2></li>
-</ul>
-</li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/10/FocaLoss-CVPR18-detection/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
