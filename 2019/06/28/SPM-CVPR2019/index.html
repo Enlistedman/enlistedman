@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="detection,">
+  <meta name="keywords" content="Tracking,">
 
 
 
@@ -92,21 +92,21 @@
 
 
 
-<meta name="description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
-<meta name="keywords" content="detection">
+<meta name="description" content="SPM SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking Paper: Code:  Overview 将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&amp;gt;FM）实现。 感觉效果惊人！OTB-100上的AUC为0.687，VO">
+<meta name="keywords" content="Tracking">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GIOU-CVPR19-detection">
-<meta property="og:url" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/index.html">
+<meta property="og:title" content="SPM-CVPR19-Tracking">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
+<meta property="og:description" content="SPM SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking Paper: Code:  Overview 将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&amp;gt;FM）实现。 感觉效果惊人！OTB-100上的AUC为0.687，VO">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/InkedGIoU_LI.jpg">
-<meta property="og:updated_time" content="2019-05-10T16:15:30.486Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/framework.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/CM.PNG">
+<meta property="og:updated_time" content="2019-07-01T14:48:23.644Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GIOU-CVPR19-detection">
-<meta name="twitter:description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG">
+<meta name="twitter:title" content="SPM-CVPR19-Tracking">
+<meta name="twitter:description" content="SPM SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking Paper: Code:  Overview 将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&amp;gt;FM）实现。 感觉效果惊人！OTB-100上的AUC为0.687，VO">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/framework.PNG">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/SPM-CVPR2019/">
 
 
 
 
 
-  <title>GIOU-CVPR19-detection | LJK' Notes</title>
+  <title>SPM-CVPR19-Tracking | LJK' Notes</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/SPM-CVPR2019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GIOU-CVPR19-detection</h1>
+          <h1 class="post-title" itemprop="name headline">SPM-CVPR19-Tracking</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T21:56:21+08:00">
-                2019-05-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T18:36:36+08:00">
+                2019-06-28
               </time>
             
 
@@ -370,33 +370,76 @@
       
 
       
-        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><ul>
-<li>提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2></li>
-<li>在anchor较少的detection中有较为明显的提升(3-6个点)   <h2 id="paper"><a href="#paper" class="headerlink" title="paper"></a>paper</h2><ul>
-<li><a href="https://arxiv.org/pdf/1902.09630.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1902.09630.pdf</a></li>
+        <h1 id="SPM"><a href="#SPM" class="headerlink" title="SPM"></a>SPM</h1><ul>
+<li>SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking</li>
+<li>Paper:</li>
+<li>Code:</li>
 </ul>
-</li>
-</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&gt;FM）实现。</li>
+<li>感觉效果惊人！OTB-100上的AUC为0.687，VOT-16上的EAO竟然达到了0.434，GPU上的fps为120，牛！</li>
+<li>抓住了siamese网络的缺点(相似物体容易drift)，解决方式就是在一阶段CM提取目标物体和其相似物体作为正样本，在二阶段FM在仔细区分object和其相似物体，也算是在image中尽可能多的提炼信息。</li>
+</ol>
 <a id="more"></a>
-<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><ol>
-<li>大家都在模型，trick上下功夫，忽略了在L1/L2上的改进(L_n范数对物体的scale比较敏感)。</li>
-<li>直接使用iou作为loss存在的问题。<ul>
-<li>两个框没有相交，IOU=0，loss = 0,无法进行梯度的反向传播，无法学习训练。</li>
-<li>IOU无法精确衡量重叠程度，且IOU的变化无法反馈定位框的重合度和方向。如下图。   <img src="/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG" alt="IOU vs GIOU" title="IOU vs GIOU"></li>
+<h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol>
+<li>在tracking的过程中，既要求tracker有足够的判别力(针对相似物体或者相似背景等)，又需要足够的鲁棒性(对于物体的形变，光照等)。但是用一阶段的方法学习两种能力，其间会相互影响。</li>
+<li>现存的tracker速度太慢。</li>
+</ol>
+<h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><ol>
+<li>将Tracking分为两阶段来做，分别是CM，FM。CM负责鲁棒性，FM负责判别力。两阶段的融合省去了做多尺度测试。</li>
+<li>在CM阶段同一类物体都被作为同一物体，来提高CM的鲁棒性。在FM阶段通过距离学习子网络替代了cross corrrelation来提高网络的判别力。CM的输出作为FM的输入，最终的输出是两阶段的融合。</li>
+<li>SPM的优势<ul>
+<li>two-stage，容易train</li>
+<li>CM的输出作为FM的输入，正负样本的比例和难样本得到了平衡</li>
+<li>两个阶段输出的融合可以有更高的精度</li>
+<li>FM阶段有较少的proposals，省去了cross-correlation操作，改为使用trainable distance measure</li>
 </ul>
 </li>
 </ol>
-<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><ol>
-<li>设定gt为A，pred为B，先求包含A，B的最小闭包C。</li>
-<li>计算C中去除A∪B后剩下的面积D，即D = C\(A∪B)。</li>
-<li>计算IoU</li>
-<li>GIoU = IoU - D/C   </li>
-<li>IOU ∈ [0,1]，GIOU ∈ [-1,1]<br><img src="/2019/05/09/GIOU-CVPR19-detection/InkedGIoU_LI.jpg" alt="GIoU" title="GIoU"></li>
-</ol>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="obtains"><a href="#obtains" class="headerlink" title="obtains"></a>obtains</h2><ul>
-<li>起初自己也想过使用iou作为loss，但是看到网上说iou作为loss可能存在梯度无法回传问题时，没有多思考去寻找解决办法。所以，遇到问题深究原因，考虑有没有可替代的近似方案。</li>
-<li>IOU既然对于尺度不敏感，L_n对尺度敏感，那两者就可以做loss的结合。</li>
+<h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><p><img src="/2019/06/28/SPM-CVPR2019/framework.PNG" alt="网络结构" title="网络结构"></p>
+<ol>
+<li>网络结构<ul>
+<li>特征提取：Siamese Alexnet(在ImageNet上预训练)</li>
+<li>CM Stage使用SiamRPN的网络结构，最小化类内特性，专注于robust</li>
+<li>ROI Align用来为每个proposal生成固定长度的区域特征</li>
+<li>FM Stage为距离学习网络，最大化不同物体间的特性，专注于discrimination</li>
+<li>最终输出为两阶段decision的融合(score + bbox deltas)</li>
 </ul>
+</li>
+<li>CM阶段<br><img src="/2019/06/28/SPM-CVPR2019/CM.PNG" alt="CM_stage" title="CM"><ul>
+<li>将image中同类物体的<strong>中心区域（红，绿）</strong>都作为正样本，蓝色区域为忽略区域</li>
+</ul>
+</li>
+<li>FM阶段<ul>
+<li>该阶段的重点在于将CM阶段过滤后的object与背景/相似物体区分开   </li>
+<li>经CM过滤后剩余较少的proposal，所以丢弃了cross correlation操作，使用了新的关系网络来进行距离计算。</li>
+<li><ul>
+<li>对于每一个proposal，直接从feature map上crop然后使用ROI pooling生成固定大小的feature，同时将高低层的信息concatenation。</li>
+</ul>
+</li>
+<li>关系网络的输入是图像对concatenate的feature信息，后接1x1卷积，再接2个全连接层（256个neurons），用来cls和box regression</li>
+</ul>
+</li>
+<li>融合<ul>
+<li>最终CM,FM阶段的scores和bbox deltas进行加权融合</li>
+</ul>
+</li>
+</ol>
+<h2 id="other-points"><a href="#other-points" class="headerlink" title="other points"></a>other points</h2><ol>
+<li>CF-based执行必不可少的是在线更新策略，但是结合deep learning是特别慢的，所以researcher使用static discriminative trackers，像siamFC等。</li>
+<li>SiamRPN使用RPN在提高bbox regression方面做了改进，DaSiamRPN使用样本策略(相似的同类物体作为正样本提高robust，语义信息接近的不同类物体作为负样本提高distrimination)在discrimination方面做了提升。</li>
+<li>网络细节<ul>
+<li>在使用的AlexNet中保留了padding，因为ROI align需要feature和source image的像素对齐。</li>
+<li>CM阶段使用no padding的中心feature(应该是从padding后的feature上crop下来)</li>
+<li>每个ROI pooling后的feature大小为6x6x640</li>
+</ul>
+</li>
+<li>train细节<ul>
+<li>IOU 大于0.6，小于0.3的样本被保留。</li>
+<li>loss :两个阶段，四个loss的加权和， cls : cross entropy , reg : smooth l1 loss</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -414,7 +457,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/detection/" rel="tag"># detection</a>
+            <a href="/tags/Tracking/" rel="tag"># Tracking</a>
           
         </div>
       
@@ -427,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/08/GARPN-CVPR19-detection/" rel="next" title="GARPN-CVPR19-detection">
-                <i class="fa fa-chevron-left"></i> GARPN-CVPR19-detection
+              <a href="/2019/06/25/DeepSort-CVPR2017/" rel="next" title="Deepsort-tracking">
+                <i class="fa fa-chevron-left"></i> Deepsort-tracking
               </a>
             
           </div>
@@ -436,10 +479,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/19/Tracking-Summary/" rel="prev" title="Tracking-Summary">
-                Tracking-Summary <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -573,7 +612,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想"><span class="nav-number">1.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.2.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#paper"><span class="nav-number">1.3.</span> <span class="nav-text">paper</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">3.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">4.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#obtains"><span class="nav-number">4.1.</span> <span class="nav-text">obtains</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SPM"><span class="nav-number">1.</span> <span class="nav-text">SPM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other-points"><span class="nav-number">1.5.</span> <span class="nav-text">other points</span></a></li></ol></li></ol></div>
             
 
           </div>

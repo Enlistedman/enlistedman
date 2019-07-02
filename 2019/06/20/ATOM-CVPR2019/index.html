@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="detection,">
+  <meta name="keywords" content="Tracking,">
 
 
 
@@ -92,21 +92,23 @@
 
 
 
-<meta name="description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
-<meta name="keywords" content="detection">
+<meta name="description" content="ATOM Accurate Tracking by Overlap Maximization Paper :  Code : https://github.com/visionml/pytracking  Overview 大佬决定在跟踪精度上做改进，抛弃anchor，使用GT添加高斯噪声的方式。 受到IOUNet的启发，将class-special的IOU-Net改为target-special">
+<meta name="keywords" content="Tracking">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GIOU-CVPR19-detection">
-<meta property="og:url" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/index.html">
+<meta property="og:title" content="ATOM-CVPR19-tracking">
+<meta property="og:url" content="http://yoursite.com/2019/06/20/ATOM-CVPR2019/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
+<meta property="og:description" content="ATOM Accurate Tracking by Overlap Maximization Paper :  Code : https://github.com/visionml/pytracking  Overview 大佬决定在跟踪精度上做改进，抛弃anchor，使用GT添加高斯噪声的方式。 受到IOUNet的启发，将class-special的IOU-Net改为target-special">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/InkedGIoU_LI.jpg">
-<meta property="og:updated_time" content="2019-05-10T16:15:30.486Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/20/ATOM-CVPR2019/Network.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/06/20/ATOM-CVPR2019/iou-modulation.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/06/20/ATOM-CVPR2019/algothm1.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/06/20/ATOM-CVPR2019/result.PNG">
+<meta property="og:updated_time" content="2019-07-01T14:45:34.924Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GIOU-CVPR19-detection">
-<meta name="twitter:description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG">
+<meta name="twitter:title" content="ATOM-CVPR19-tracking">
+<meta name="twitter:description" content="ATOM Accurate Tracking by Overlap Maximization Paper :  Code : https://github.com/visionml/pytracking  Overview 大佬决定在跟踪精度上做改进，抛弃anchor，使用GT添加高斯噪声的方式。 受到IOUNet的启发，将class-special的IOU-Net改为target-special">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/20/ATOM-CVPR2019/Network.PNG">
 
 
 
@@ -136,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/20/ATOM-CVPR2019/">
 
 
 
 
 
-  <title>GIOU-CVPR19-detection | LJK' Notes</title>
+  <title>ATOM-CVPR19-tracking | LJK' Notes</title>
   
 
 
@@ -281,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/ATOM-CVPR2019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -298,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GIOU-CVPR19-detection</h1>
+          <h1 class="post-title" itemprop="name headline">ATOM-CVPR19-tracking</h1>
         
 
         <div class="post-meta">
@@ -310,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T21:56:21+08:00">
-                2019-05-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T10:36:44+08:00">
+                2019-06-20
               </time>
             
 
@@ -370,32 +372,77 @@
       
 
       
-        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><ul>
-<li>提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2></li>
-<li>在anchor较少的detection中有较为明显的提升(3-6个点)   <h2 id="paper"><a href="#paper" class="headerlink" title="paper"></a>paper</h2><ul>
-<li><a href="https://arxiv.org/pdf/1902.09630.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1902.09630.pdf</a></li>
+        <h1 id="ATOM"><a href="#ATOM" class="headerlink" title="ATOM"></a>ATOM</h1><ul>
+<li>Accurate Tracking by Overlap Maximization</li>
+<li>Paper : </li>
+<li>Code : <a href="https://github.com/visionml/pytracking" target="_blank" rel="noopener">https://github.com/visionml/pytracking</a></li>
 </ul>
-</li>
-</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>大佬决定在跟踪精度上做改进，抛弃anchor，使用GT添加高斯噪声的方式。</li>
+<li>受到IOUNet的启发，将class-special的IOU-Net改为target-special的IOU-Net使其适用于tracking的情境。</li>
+<li>SGD算法收敛太慢，所以提出了新的收敛算法（共轭梯度+牛顿高斯）。</li>
+</ol>
 <a id="more"></a>
-<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><ol>
-<li>大家都在模型，trick上下功夫，忽略了在L1/L2上的改进(L_n范数对物体的scale比较敏感)。</li>
-<li>直接使用iou作为loss存在的问题。<ul>
-<li>两个框没有相交，IOU=0，loss = 0,无法进行梯度的反向传播，无法学习训练。</li>
-<li>IOU无法精确衡量重叠程度，且IOU的变化无法反馈定位框的重合度和方向。如下图。   <img src="/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG" alt="IOU vs GIOU" title="IOU vs GIOU"></li>
+<h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol>
+<li>近年来，大家的目光都聚焦在tracking的鲁棒性上，而忽略了tracking的准确性。</li>
+<li>在IOUNet的启发下作的一些改进。</li>
+</ol>
+<h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><ol>
+<li>target分类（online）<ul>
+<li>区分前/背景提供一个粗略的定位，online提高分类的鲁棒性</li>
+<li>使用2层全连接层</li>
+<li>抛弃SGD，使用共轭梯度+牛顿高斯方法优化</li>
+</ul>
+</li>
+<li>target估计（offline）<ul>
+<li>用于寻找overlap最大化的bbox，offline学习一个更通用的IoU预测表示</li>
+<li>使用IOU-predictor网络来进行target估计</li>
+<li>input是image object的feature和bbox_delta，然后使用PrROI pooling得到一个预定义大小的feature。</li>
 </ul>
 </li>
 </ol>
-<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><ol>
-<li>设定gt为A，pred为B，先求包含A，B的最小闭包C。</li>
-<li>计算C中去除A∪B后剩下的面积D，即D = C\(A∪B)。</li>
-<li>计算IoU</li>
-<li>GIoU = IoU - D/C   </li>
-<li>IOU ∈ [0,1]，GIOU ∈ [-1,1]<br><img src="/2019/05/09/GIOU-CVPR19-detection/InkedGIoU_LI.jpg" alt="GIoU" title="GIoU"></li>
+<h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><ol>
+<li>网络结构<br><img src="/2019/06/20/ATOM-CVPR2019/Network.PNG" alt="network" title="network"><ul>
+<li>backbone ：Resnet-18（在ImageNet上预训练）</li>
+</ul>
+</li>
+<li>IOU Modulation<br><img src="/2019/06/20/ATOM-CVPR2019/iou-modulation.PNG" alt="iou-modulation" title="iou-modulation"><ul>
+<li>对reference帧和search帧进行了特征提取，之后通过channel-wise multiplication做特征融合。</li>
+</ul>
+</li>
+<li>IOU predictor<ul>
+<li>由3层FC层组成</li>
+<li>IOU predictor input : 当前帧的feature，当前帧的bbox估计，reference帧的feature，reference帧中的target bbox</li>
+<li>IOU predictor output : 当前帧中预测的每一个bbox的iou值</li>
+</ul>
+</li>
+<li>Classifier<ul>
+<li>2个全卷积网络</li>
+<li>第一层由1x1卷积构成，将通道减小至64，减少计算量。</li>
+<li>第二层使用4x4的单输出通道kernel</li>
+<li>使用PELU作为输出的激活函数，可以忽略掉简单的负样本</li>
+<li>第一帧，使用了数据增强(旋转，模糊，dropout等)</li>
+<li>在分类过程中使用了自定义的优化策略（共轭梯度+牛顿高斯）<br><img src="/2019/06/20/ATOM-CVPR2019/algothm1.PNG" alt="algorithm1" title="algorithm1"></li>
+</ul>
+</li>
+<li>实现细节<ul>
+<li>使用了LaSOT和TrackingNet数据集，同时使用了COCO数据集来进行数据增强操作</li>
+<li>图像对采样间隔为50</li>
+<li>每个图像对，对应生成16个候选的bbox（GT+高斯噪声，同时确保最小iou为0.1）</li>
+<li>权重初始化 -  Delving deep into rectiﬁers: Surpassing human-level performance on imagenet classiﬁcation. In ICCV, 2015. 5</li>
+<li>loss使用MSE loss，训练40个epoch，每个epoch使用64个图像对</li>
+<li>学习率初始为10e-3，weight decay factor为0.2（15epoch）</li>
+<li>在训练过程中，backbone的weight被freezed</li>
+<li>硬负样本挖掘，当distractor在分类score中取到峰值，会将该样本使用2倍的lr在优化训练一轮。同时，在score低于0.25时判断为丢失。</li>
+<li>最后的输出使用IOU最高的3个bbox的平均值。</li>
+</ul>
+</li>
 </ol>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="obtains"><a href="#obtains" class="headerlink" title="obtains"></a>obtains</h2><ul>
-<li>起初自己也想过使用iou作为loss，但是看到网上说iou作为loss可能存在梯度无法回传问题时，没有多思考去寻找解决办法。所以，遇到问题深究原因，考虑有没有可替代的近似方案。</li>
-<li>IOU既然对于尺度不敏感，L_n对尺度敏感，那两者就可以做loss的结合。</li>
+<h2 id="results"><a href="#results" class="headerlink" title="results"></a>results</h2><ol>
+<li>Nvidia GT-1080 GPU上运行30FPS<br><img src="/2019/06/20/ATOM-CVPR2019/result.PNG" alt="result" title="result"></li>
+</ol>
+<h2 id="other-points"><a href="#other-points" class="headerlink" title="other points"></a>other points</h2><ul>
+<li>低层包含更多的表面信息，那为什么不用底层feature做reg,用高层语义信息去做分类。</li>
 </ul>
 
       
@@ -414,7 +461,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/detection/" rel="tag"># detection</a>
+            <a href="/tags/Tracking/" rel="tag"># Tracking</a>
           
         </div>
       
@@ -427,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/08/GARPN-CVPR19-detection/" rel="next" title="GARPN-CVPR19-detection">
-                <i class="fa fa-chevron-left"></i> GARPN-CVPR19-detection
+              <a href="/2019/06/18/IOU-Net-ECCV2018/" rel="next" title="IOU-Net-ECCV18-detection">
+                <i class="fa fa-chevron-left"></i> IOU-Net-ECCV18-detection
               </a>
             
           </div>
@@ -437,8 +484,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/19/Tracking-Summary/" rel="prev" title="Tracking-Summary">
-                Tracking-Summary <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/23/CIR-CVPR2019/" rel="prev" title="CIR-CVPR19-tracking">
+                CIR-CVPR19-tracking <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -573,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想"><span class="nav-number">1.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.2.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#paper"><span class="nav-number">1.3.</span> <span class="nav-text">paper</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">3.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">4.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#obtains"><span class="nav-number">4.1.</span> <span class="nav-text">obtains</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ATOM"><span class="nav-number">1.</span> <span class="nav-text">ATOM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">网络结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#results"><span class="nav-number">1.5.</span> <span class="nav-text">results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other-points"><span class="nav-number">1.6.</span> <span class="nav-text">other points</span></a></li></ol></li></ol></div>
             
 
           </div>

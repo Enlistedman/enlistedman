@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function () {
+        if ('') {
+            if (prompt('Please input the page's password:') !== '') {
+                alert('password error！');
+                if (history.length === 1) {
+                    location.replace("https://enlistedman.github.io/"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="detection,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="IOU-Net Acquisition of Localization Confidence for Accurate Object Detection Paper :  Code :   Overview 目前大多数的tracker都是通过cls score来确定物体的位置，但是分类得分高并不意味着定位的准确度高，所以用cls score去做NMS并不是特别合理，因为会把定位精准但分类得分低的卡">
+<meta name="keywords" content="detection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IOU-Net-ECCV18-detection">
+<meta property="og:url" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/index.html">
+<meta property="og:site_name" content="LJK&#39; Notes">
+<meta property="og:description" content="IOU-Net Acquisition of Localization Confidence for Accurate Object Detection Paper :  Code :   Overview 目前大多数的tracker都是通过cls score来确定物体的位置，但是分类得分高并不意味着定位的准确度高，所以用cls score去做NMS并不是特别合理，因为会把定位精准但分类得分低的卡">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/CLSvsIOU.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/CompareImg.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/IOUandBBOX.png#pic_center">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/IOUvsREG.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/APvsIteration.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/Network.png#pic_center">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/IOU-guided-NMS.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/bbox-refinement.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/ROI-pooling-align-prroi.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/equal-2.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/equal-3.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/result-iou-nms.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/result-refinement.png">
+<meta property="og:updated_time" content="2019-07-01T14:47:29.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IOU-Net-ECCV18-detection">
+<meta name="twitter:description" content="IOU-Net Acquisition of Localization Confidence for Accurate Object Detection Paper :  Code :   Overview 目前大多数的tracker都是通过cls score来确定物体的位置，但是分类得分高并不意味着定位的准确度高，所以用cls score去做NMS并不是特别合理，因为会把定位精准但分类得分低的卡">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/CLSvsIOU.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/">
+
+
+
+
+
+  <title>IOU-Net-ECCV18-detection | LJK' Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/enlistedman"><img style="position: absolute; top: 0; right: 0;border: 0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LJK' Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LJK">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LJK' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IOU-Net-ECCV18-detection</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T14:36:44+08:00">
+                2019-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/papers/" itemprop="url" rel="index">
+                    <span itemprop="name">papers</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="IOU-Net"><a href="#IOU-Net" class="headerlink" title="IOU-Net"></a>IOU-Net</h1><ul>
+<li>Acquisition of Localization Confidence for Accurate Object Detection</li>
+<li>Paper : </li>
+<li>Code : </li>
+</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>目前大多数的tracker都是通过cls score来确定物体的位置，但是分类得分高并不意味着定位的准确度高，所以用cls score去做NMS并不是特别合理，因为会把定位精准但分类得分低的卡掉。所以作者提出了使用iou score作为排序指标。</li>
+<li>Paper提出了IOU-guided NMS，PrROI（使用积分的方式计算ROI特征）。</li>
+<li>很有分量的文章，受益匪浅。</li>
+</ol>
+<a id="more"></a>
+<h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol>
+<li>使用预测box的cls score去做NMS并不合理,如图所示。<ul>
+<li>根据皮尔逊相关系数，分类score和iou并不成正相关，而定位score和iou是成正相关。<br><img src="/2019/06/18/IOU-Net-ECCV2018/CLSvsIOU.png" alt="&quot;CLSvsIOU&quot;" title="CLSvsIOU"></li>
+<li>并且，分类得分高的并不一定定位得分高，使用cls score做NMS会把这些定位得分高的box卡掉。<br><img src="/2019/06/18/IOU-Net-ECCV2018/CompareImg.png" alt="&quot;对比&quot;" title="对比"></li>
+<li>通过下图也可以看出，NMS很容易把IOU较高的bbox过滤掉（当然其中肯定存在大量的冗余bbox）。<br><img src="/2019/06/18/IOU-Net-ECCV2018/IOUandBBOX.png#pic_center" alt="&quot;IOUandBBOX&quot;" title="IOUandBBOX"></li>
+</ul>
+</li>
+<li>传统的基于regression的bbox refine的问题。<ul>
+<li>regression-based和optimization-based的直观效果差距。<br><img src="/2019/06/18/IOU-Net-ECCV2018/IOUvsREG.png" alt="IOUvsREG" title="IOUvsREG"></li>
+<li>regression-based是通过回归[cx,cy,w,h]使其与gt尽可能接近。理论上不断refine会得到很精确的结果，但是cascad RCNN相关实验表示在随着refine次数的增加效果会下降，(<strong>为什么会这样还需要做点工作</strong>)。但是使用IOU的方式在不断refine后不会出现该情况。<br><img src="/2019/06/18/IOU-Net-ECCV2018/APvsIteration.png" alt="APvsIteration" title="APvsIteration"></li>
+</ul>
+</li>
+</ol>
+<h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><ol>
+<li>提出了IOU-Net来预测bbox和gt的IOU值。</li>
+<li>将ROI pooling/Align更换为prROI。</li>
+</ol>
+<h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><h3 id="IOU-Net-1"><a href="#IOU-Net-1" class="headerlink" title="IOU-Net"></a>IOU-Net</h3><p><img src="/2019/06/18/IOU-Net-ECCV2018/Network.png#pic_center" alt="Network" title="Network"></p>
+<ol>
+<li>IOU predictor的input是image通过FPN后的feature。output是每个bbox的iou score。<strong>这里使用的proposal并不是来自RPN，而是通过对GT进行随机变换（添加随机噪声等）得到的一系列proposals</strong>，然后对bbox进行过滤。对于每一个bbox会使用prROI-pooling在FPN上提取的feature，这些feature被送入2层fc层做IOU预测。</li>
+</ol>
+<h3 id="IOU-guided-NMS"><a href="#IOU-guided-NMS" class="headerlink" title="IOU-guided NMS"></a>IOU-guided NMS</h3><p><img src="/2019/06/18/IOU-Net-ECCV2018/IOU-guided-NMS.png" alt="IOU-guided-NMS" title="IOU-guided-NMS"></p>
+<ol>
+<li>将NMS算法中的排序指标改为IOU score。</li>
+<li>通过对iou进行聚类的方式对cls score进行更新(<strong>重点在第5,8行</strong>)。在根据iou过滤的过程中，将过滤掉的bboxes中的最高的cls score分配给当前的bbox，所以保留下的是其iou簇中最高的分类得分。感觉这样做的好处是消除iou一致情况下cls score的差别。</li>
+</ol>
+<h3 id="Optimization-based-bbox-refinement。"><a href="#Optimization-based-bbox-refinement。" class="headerlink" title="Optimization-based bbox refinement。"></a>Optimization-based bbox refinement。</h3><h4 id="IOU支路的梯度计算和参数更新"><a href="#IOU支路的梯度计算和参数更新" class="headerlink" title="IOU支路的梯度计算和参数更新"></a>IOU支路的梯度计算和参数更新</h4><p><img src="/2019/06/18/IOU-Net-ECCV2018/bbox-refinement.png" alt="bbox-refinement" title="optimization-based bbox-refinement"></p>
+<h4 id="prROI-pooling"><a href="#prROI-pooling" class="headerlink" title="prROI pooling"></a>prROI pooling</h4><p><img src="/2019/06/18/IOU-Net-ECCV2018/ROI-pooling-align-prroi.png" alt="ROI-pooling-align-prroi" title="ROI-pooling-align-prroi"></p>
+<ol>
+<li>上图是ROI pooling，ROI align，prROI pooling的对比，这是三种都是基于ROI坐标根据feature map提取feature的方法。</li>
+<li>ROI pooling。<ul>
+<li>先将预测得到的ROI除以stride，并量化取整得到整数值的ROI</li>
+<li>将ROI分为k*K个grid，每个grid的坐标为(x1,y1,x2,y2)，其坐标值不一定为整数，所以要量化取整，左上角向下取整，右下角向上取整，得到整数的坐标值。然后可以采用均值/最大值操作得到该grid的特征值。</li>
+<li>优点：解决了不同大小ROI的尺寸不统一的问题</li>
+<li>缺点：量化操作会引入一定的误差</li>
+</ul>
+</li>
+<li>ROI Align<ul>
+<li>对ROI pooling进行改进，直接使用浮点坐标值将ROI划分，消除了量化操作引入的误差。</li>
+<li>对ROI的每个grid的坐标也不再进行量化，而是在grid中均匀取4个点，通过公式2（插值）计算得到该点的特征值（该公式根据距离对周围的4个点进行加权计算，距离越近权重越大），然后对其求平均<br><img src="/2019/06/18/IOU-Net-ECCV2018/equal-2.png" alt="equal-2" title="equal-2"></li>
+<li>优点：消除了量化操作带来的误差</li>
+<li>缺点：没有考虑grid的大小差异 </li>
+</ul>
+</li>
+<li>PrROI pooling<ul>
+<li>使用积分的方式计算每个grid的特征值</li>
+<li>ROI Align仅考虑该grid中4个插值点的均值，PrROI pooling是将grid中的值看做是连续的，通过对该grid中所有点求积分得到该grid所包围点的总和，最后除以面积。<br><img src="/2019/06/18/IOU-Net-ECCV2018/equal-3.png" alt="equal-3" title="equal-3"></li>
+<li>优点：结果会更加精准</li>
+</ul>
+</li>
+</ol>
+<h2 id="result"><a href="#result" class="headerlink" title="result"></a>result</h2><ol>
+<li>IOU-guided NMS<br><img src="/2019/06/18/IOU-Net-ECCV2018/result-iou-nms.png" alt="result-iou-nms" title="result-iou-nms"> <ul>
+<li>当IOU threshold设定较高时，iou nms的效果会更加明显，因为threshold较高的时候需要bbox的坐标更加准确才会能更好的AP值。</li>
+</ul>
+</li>
+<li>optimization-based bbox refinement<br><img src="/2019/06/18/IOU-Net-ECCV2018/result-refinement.png" alt="result-refinement" title="result-refinement"> <ul>
+<li>refinement在各个模块上都有不错的提升。</li>
+</ul>
+</li>
+</ol>
+<h2 id="other-points"><a href="#other-points" class="headerlink" title="other points"></a>other points</h2><h3 id="NMS"><a href="#NMS" class="headerlink" title="NMS"></a>NMS</h3><ol>
+<li>将所有的bbox按cls score降排序生成一个list</li>
+<li>从top 1 bbox开始，计算该bbox与其他bbox的iou，若iou大于设定阈值则剔除。</li>
+<li>再从top 2 bbox开始，计算该bbox与其他bbox的iou…</li>
+<li>重复操作，直到list中所有元素都筛选完毕</li>
+</ol>
+<h3 id="soft-NMS"><a href="#soft-NMS" class="headerlink" title="soft NMS"></a>soft NMS</h3><ul>
+<li>并不是真正的抑制，而是对要过滤掉的bbox乘以一个衰减系数。</li>
+</ul>
+<ol>
+<li>将所有的bbox按cls score降排序生成一个list</li>
+<li>从top 1 bbox开始，计算该bbox与其他bbox的iou，若iou大于设定阈值则<strong>将其乘以一个系数，使其缩小，之后在重新比较</strong>。</li>
+<li>再从top 2 bbox开始，计算该bbox与其他bbox的iou…</li>
+<li>重复操作，直到list中所有元素都筛选完毕。</li>
+<li>对于遮挡，目标密集的情况效果很好，但是对于稀疏的场景，召回率可能会低于NMS。</li>
+</ol>
+<h3 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h3><ol>
+<li>对GT做随机调整这种方法，感觉可以用</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/detection/" rel="tag"># detection</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/22/canny边缘检测/" rel="next" title="Canny边缘检测">
+                <i class="fa fa-chevron-left"></i> Canny边缘检测
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/20/ATOM-CVPR2019/" rel="prev" title="ATOM-CVPR19-tracking">
+                ATOM-CVPR19-tracking <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="LJK">
+            
+              <p class="site-author-name" itemprop="name">LJK</p>
+              <p class="site-description motion-element" itemprop="description">正值年少，撸铁，撸串，撸代码！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IOU-Net"><span class="nav-number">1.</span> <span class="nav-text">IOU-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IOU-Net-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">IOU-Net</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IOU-guided-NMS"><span class="nav-number">1.4.2.</span> <span class="nav-text">IOU-guided NMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization-based-bbox-refinement。"><span class="nav-number">1.4.3.</span> <span class="nav-text">Optimization-based bbox refinement。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IOU支路的梯度计算和参数更新"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">IOU支路的梯度计算和参数更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#prROI-pooling"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">prROI pooling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">1.5.</span> <span class="nav-text">result</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other-points"><span class="nav-number">1.6.</span> <span class="nav-text">other points</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NMS"><span class="nav-number">1.6.1.</span> <span class="nav-text">NMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#soft-NMS"><span class="nav-number">1.6.2.</span> <span class="nav-text">soft NMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#想法"><span class="nav-number">1.6.3.</span> <span class="nav-text">想法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LJK</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+</span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

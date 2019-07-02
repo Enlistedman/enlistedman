@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="detection,">
+  <meta name="keywords" content="Tracking,">
 
 
 
@@ -92,21 +92,18 @@
 
 
 
-<meta name="description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
-<meta name="keywords" content="detection">
+<meta name="description" content="Tracking-Summary 总结一下近年来比较经典的tracker,未完待续">
+<meta name="keywords" content="Tracking">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GIOU-CVPR19-detection">
-<meta property="og:url" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/index.html">
+<meta property="og:title" content="Tracking-Summary">
+<meta property="og:url" content="http://yoursite.com/2019/05/19/Tracking-Summary/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
+<meta property="og:description" content="Tracking-Summary 总结一下近年来比较经典的tracker,未完待续">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/InkedGIoU_LI.jpg">
-<meta property="og:updated_time" content="2019-05-10T16:15:30.486Z">
+<meta property="og:updated_time" content="2019-07-01T15:03:13.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GIOU-CVPR19-detection">
-<meta name="twitter:description" content="Overview主要思想 提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    效果 在anchor较少的detection中有较为明显的提升(3-6个点)   paper https://arxiv.org/pdf/1902.09630.pdf">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG">
+<meta name="twitter:title" content="Tracking-Summary">
+<meta name="twitter:description" content="Tracking-Summary 总结一下近年来比较经典的tracker,未完待续">
 
 
 
@@ -136,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/19/Tracking-Summary/">
 
 
 
 
 
-  <title>GIOU-CVPR19-detection | LJK' Notes</title>
+  <title>Tracking-Summary | LJK' Notes</title>
   
 
 
@@ -281,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/GIOU-CVPR19-detection/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/Tracking-Summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -298,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GIOU-CVPR19-detection</h1>
+          <h1 class="post-title" itemprop="name headline">Tracking-Summary</h1>
         
 
         <div class="post-meta">
@@ -310,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T21:56:21+08:00">
-                2019-05-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T21:56:21+08:00">
+                2019-05-19
               </time>
             
 
@@ -333,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/papers/" itemprop="url" rel="index">
-                    <span itemprop="name">papers</span>
+                  <a href="/categories/summary/" itemprop="url" rel="index">
+                    <span itemprop="name">summary</span>
                   </a>
                 </span>
 
@@ -370,34 +367,57 @@
       
 
       
-        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><ul>
-<li>提出新的loss指标GIOU,使用评价标准作为loss，同时避免了IOU作为loss的缺点，有较好的提升。    <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2></li>
-<li>在anchor较少的detection中有较为明显的提升(3-6个点)   <h2 id="paper"><a href="#paper" class="headerlink" title="paper"></a>paper</h2><ul>
-<li><a href="https://arxiv.org/pdf/1902.09630.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1902.09630.pdf</a></li>
-</ul>
-</li>
+        <h1 id="Tracking-Summary"><a href="#Tracking-Summary" class="headerlink" title="Tracking-Summary"></a>Tracking-Summary</h1><ul>
+<li>总结一下近年来比较经典的tracker,未完待续</li>
 </ul>
 <a id="more"></a>
-<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><ol>
-<li>大家都在模型，trick上下功夫，忽略了在L1/L2上的改进(L_n范数对物体的scale比较敏感)。</li>
-<li>直接使用iou作为loss存在的问题。<ul>
-<li>两个框没有相交，IOU=0，loss = 0,无法进行梯度的反向传播，无法学习训练。</li>
-<li>IOU无法精确衡量重叠程度，且IOU的变化无法反馈定位框的重合度和方向。如下图。   <img src="/2019/05/09/GIOU-CVPR19-detection/IOU_vs_GIOU.PNG" alt="IOU vs GIOU" title="IOU vs GIOU"></li>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3><ul>
+<li>外观的形变，光照变换，快速运动，运动模糊，背景相似干扰，遮挡，旋转，尺度变换，出视野<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3></li>
+<li>OTB<br>OTB包含0.25的灰度序列</li>
+<li>VOT<br>vot是彩色序列，且分辨率较高，精细标注，评价指标更好</li>
+<li>差别   <ul>
+<li>OTB有随机帧开始，或者矩形框随机干扰初始化去跑</li>
+<li>VOT是用第一帧初始化，每次跟踪失败，５帧之后重新初始化<h3 id="类别"><a href="#类别" class="headerlink" title="类别"></a>类别</h3><h4 id="生成式模型"><a href="#生成式模型" class="headerlink" title="生成式模型"></a>生成式模型</h4></li>
 </ul>
 </li>
-</ol>
-<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><ol>
-<li>设定gt为A，pred为B，先求包含A，B的最小闭包C。</li>
-<li>计算C中去除A∪B后剩下的面积D，即D = C\(A∪B)。</li>
-<li>计算IoU</li>
-<li>GIoU = IoU - D/C   </li>
-<li>IOU ∈ [0,1]，GIOU ∈ [-1,1]<br><img src="/2019/05/09/GIOU-CVPR19-detection/InkedGIoU_LI.jpg" alt="GIoU" title="GIoU"></li>
-</ol>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="obtains"><a href="#obtains" class="headerlink" title="obtains"></a>obtains</h2><ul>
-<li>起初自己也想过使用iou作为loss，但是看到网上说iou作为loss可能存在梯度无法回传问题时，没有多思考去寻找解决办法。所以，遇到问题深究原因，考虑有没有可替代的近似方案。</li>
-<li>IOU既然对于尺度不敏感，L_n对尺度敏感，那两者就可以做loss的结合。</li>
+<li>对第一帧的目标区域建模，下一帧寻找与模型最相似的区域作为预测区域。</li>
+<li><strong>方法</strong>：卡尔曼滤波，粒子滤波，mean-shift</li>
+<li><strong>代表</strong>：ASMS,DAT（ASMS仅使用颜色特征，切且速度较快，125fps，在mean-shift框架下加入了尺度估计，加入了尺度不剧变，可能偏最大的两个先验的正则项，再加反向尺度一致性检查）。<h4 id="判别式模型"><a href="#判别式模型" class="headerlink" title="判别式模型"></a>判别式模型</h4></li>
+<li>将当前帧的目标区域作为正样本，背景区域作为负样本来训练分类器。（相比较生成式模型使用了背景信息，效果会更好一些）</li>
+<li><strong>方法</strong>：<br>传统的机器学习算法，相关滤波，深度学习</li>
+<li><strong>代表</strong>：<br>传统－－Struck，TLD(struck使用了haar+structured output SVM，跟踪中进行多尺度便利搜索来完成尺度自适应)<br>相关滤波－－KCF,CSK,DAT<br>深度学习－－MDNet,TCNN,SiamFC</li>
 </ul>
-
+<h3 id="传统机器学习方法"><a href="#传统机器学习方法" class="headerlink" title="传统机器学习方法"></a>传统机器学习方法</h3><h4 id="Struck-2012-20fps"><a href="#Struck-2012-20fps" class="headerlink" title="Struck - 2012 - 20fps"></a>Struck - 2012 - 20fps</h4><h3 id="相关滤波－CF"><a href="#相关滤波－CF" class="headerlink" title="相关滤波－CF"></a>相关滤波－CF</h3><p><strong>推荐</strong>：<a href="https://github.com/HEscop/TBCF" title="大佬维护的CF资源" target="_blank" rel="noopener">大佬维护的CF资源</a></p>
+<h4 id="MOSSE-615fps"><a href="#MOSSE-615fps" class="headerlink" title="MOSSE -      - 615fps"></a>MOSSE -      - 615fps</h4><ul>
+<li>单通道灰度特征的相关滤波</li>
+</ul>
+<h4 id="CSK-362fps"><a href="#CSK-362fps" class="headerlink" title="CSK -      - 362fps"></a>CSK -      - 362fps</h4><ul>
+<li>岭回归，循环移位的近似密集采样，多通道HOG特征</li>
+<li>CSK在MOSSE的基础上扩展了密集采样和kernel-trick</li>
+</ul>
+<h4 id="KCF-2014-172fps-hog"><a href="#KCF-2014-172fps-hog" class="headerlink" title="KCF - 2014 - 172fps(hog)"></a>KCF - 2014 - 172fps(hog)</h4><ul>
+<li>在CSK基础上扩展了多通道梯度的HOG特征(梯度特征)</li>
+</ul>
+<h4 id="DCF-2014-292fps-hog"><a href="#DCF-2014-292fps-hog" class="headerlink" title="DCF - 2014 - 292fps(hog)"></a>DCF - 2014 - 292fps(hog)</h4><h4 id="CN-2014-152fps"><a href="#CN-2014-152fps" class="headerlink" title="CN - 2014 - 152fps"></a>CN - 2014 - 152fps</h4><ul>
+<li>在CSK基础上扩展了多通道CN特征(颜色特征)<h4 id="相关知识点"><a href="#相关知识点" class="headerlink" title="相关知识点"></a>相关知识点</h4></li>
+</ul>
+<ol>
+<li><a href="https://blog.csdn.net/zouxy09/article/details/7929348" title="参考" target="_blank" rel="noopener">HOG特征</a>   </li>
+</ol>
+<ul>
+<li>主要思想：梯度的统计信息，梯度主要存在于边缘的地方。</li>
+<li>实现过程   <ul>
+<li>灰度化（将图像看做一个x,y,z（灰度）的三维图像）；</li>
+<li>采用Gamma校正法对输入图像进行颜色空间的标准化（归一化）；目的是调节图像的对比度，降低图像局部的阴影和光照变化所造成的影响，同时可以抑制噪音的干扰；</li>
+<li>计算图像每个像素的梯度（包括大小和方向）；主要是为了捕获轮廓信息，同时进一步弱化光照的干扰。计算图像梯度。计算图像横/纵坐标方向的梯度(就是该像素在横纵方向上的相邻像素去做差,常用的方法是用[-1,0,1]梯度算子对原图像做卷积运算得到ｘ方向的梯度分量，同理，使用[-1,0,1]运算得到y方向上的梯度分量)，并计算每个像素位置的梯度方向值。</li>
+<li>将图像划分成小cells（例如6*6像素/cell）；</li>
+<li>统计每个cell的梯度直方图（不同梯度的个数），即可形成每个cell的descriptor；</li>
+<li>将每几个cell组成一个block（例如3*3个cell/block），一个block内所有cell的特征descriptor串联起来便得到该block的HOG特征descriptor。</li>
+<li>将图像image内的所有block的HOG特征descriptor串联起来就可以得到该image（你要检测的目标）的HOG特征descriptor了。这个就是最终的可供分类使用的特征向量了。</li>
+</ul>
+</li>
+</ul>
+<h3 id="深度学习-DL"><a href="#深度学习-DL" class="headerlink" title="深度学习-DL"></a>深度学习-DL</h3>
       
     </div>
     
@@ -414,7 +434,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/detection/" rel="tag"># detection</a>
+            <a href="/tags/Tracking/" rel="tag"># Tracking</a>
           
         </div>
       
@@ -427,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/08/GARPN-CVPR19-detection/" rel="next" title="GARPN-CVPR19-detection">
-                <i class="fa fa-chevron-left"></i> GARPN-CVPR19-detection
+              <a href="/2019/05/09/GIOU-CVPR19-detection/" rel="next" title="GIOU-CVPR19-detection">
+                <i class="fa fa-chevron-left"></i> GIOU-CVPR19-detection
               </a>
             
           </div>
@@ -437,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/19/Tracking-Summary/" rel="prev" title="Tracking-Summary">
-                Tracking-Summary <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/22/canny边缘检测/" rel="prev" title="Canny边缘检测">
+                Canny边缘检测 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -573,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思想"><span class="nav-number">1.1.</span> <span class="nav-text">主要思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.2.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#paper"><span class="nav-number">1.3.</span> <span class="nav-text">paper</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">3.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">4.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#obtains"><span class="nav-number">4.1.</span> <span class="nav-text">obtains</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tracking-Summary"><span class="nav-number">1.</span> <span class="nav-text">Tracking-Summary</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#综述"><span class="nav-number">1.1.</span> <span class="nav-text">综述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难点"><span class="nav-number">1.1.1.</span> <span class="nav-text">难点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类别"><span class="nav-number">1.1.3.</span> <span class="nav-text">类别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生成式模型"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">生成式模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判别式模型"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">判别式模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传统机器学习方法"><span class="nav-number">1.1.4.</span> <span class="nav-text">传统机器学习方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Struck-2012-20fps"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">Struck - 2012 - 20fps</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关滤波－CF"><span class="nav-number">1.1.5.</span> <span class="nav-text">相关滤波－CF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MOSSE-615fps"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">MOSSE -      - 615fps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSK-362fps"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">CSK -      - 362fps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KCF-2014-172fps-hog"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">KCF - 2014 - 172fps(hog)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DCF-2014-292fps-hog"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">DCF - 2014 - 292fps(hog)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CN-2014-152fps"><span class="nav-number">1.1.5.5.</span> <span class="nav-text">CN - 2014 - 152fps</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关知识点"><span class="nav-number">1.1.5.6.</span> <span class="nav-text">相关知识点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度学习-DL"><span class="nav-number">1.1.6.</span> <span class="nav-text">深度学习-DL</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
