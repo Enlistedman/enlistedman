@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="python,">
 
 
 
@@ -94,16 +94,18 @@
 
 
 
-<meta name="description" content="正值年少，撸铁，撸串，撸代码！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LJK&#39; Notes">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+<meta name="description" content="Python内存管理 今天在刷复杂链表复制的时候，碰到了这个点，总结一下 python内存管理机制：引用计数，垃圾回收，内存池机制">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python内存管理">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/python内存管理/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="正值年少，撸铁，撸串，撸代码！">
+<meta property="og:description" content="Python内存管理 今天在刷复杂链表复制的时候，碰到了这个点，总结一下 python内存管理机制：引用计数，垃圾回收，内存池机制">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-08T02:41:45.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LJK&#39; Notes">
-<meta name="twitter:description" content="正值年少，撸铁，撸串，撸代码！">
+<meta name="twitter:title" content="python内存管理">
+<meta name="twitter:description" content="Python内存管理 今天在刷复杂链表复制的时候，碰到了这个点，总结一下 python内存管理机制：引用计数，垃圾回收，内存池机制">
 
 
 
@@ -133,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/page/2/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/07/python内存管理/">
 
 
 
 
 
-  <title>归档 | LJK' Notes</title>
+  <title>python内存管理 | LJK' Notes</title>
   
 
 
@@ -158,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <a href="https://github.com/enlistedman"><img style="position: absolute; top: 0; right: 0;border: 0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
@@ -264,146 +266,214 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/python内存管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LJK">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LJK' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">python内存管理</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-07T15:36:25+08:00">
+                2019-07-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/09/GIOU-CVPR19-detection/" itemprop="url">
-              
-                <span itemprop="name">GIOU-CVPR19-detection</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-09T21:56:21+08:00" content="2019-05-09">
-          05-09
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/08/GARPN-CVPR19-detection/" itemprop="url">
-              
-                <span itemprop="name">GARPN-CVPR19-detection</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-08T10:36:24+08:00" content="2019-05-08">
-          05-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/10/FocaLoss-CVPR18-detection/" itemprop="url">
-              
-                <span itemprop="name">FocaLoss-CVPR18-detection</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-10T19:36:44+08:00" content="2019-04-10">
-          04-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="Python内存管理"><a href="#Python内存管理" class="headerlink" title="Python内存管理"></a>Python内存管理</h1><ul>
+<li>今天在刷复杂链表复制的时候，碰到了这个点，总结一下</li>
+<li>python内存管理机制：引用计数，垃圾回收，内存池机制</li>
+</ul>
+<a id="more"></a>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><ol>
+<li>python中，对象和引用分离，对于<strong>整数int和短小的字符str</strong>，python都会缓</li>
+<li>存这些对象，用以重复使用，当创建多个相同的对象时，实际上只是让所有这些引用指向同一个对象。</li>
+</ol>
+<ul>
+<li>int：-5~256</li>
+<li>str：只包含数字和字母的元素有小数据池 + 单个字母*int（21）存在小数据池<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span> </span><br><span class="line">b = <span class="number">1</span></span><br><span class="line">id(a) == id(b) <span class="comment"># True 即a，b为1对象的两个引用。</span></span><br><span class="line">a <span class="keyword">is</span> b <span class="comment"># True 用于判断两个引用指向的对象是否相同</span></span><br><span class="line">getrefcount(a) <span class="comment"># 判断对象的引用总数，getrefcount会创建一个临时引用，这样会比期望结果多1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>长字符串和其他对象可以有多个相同的对象，可以使用赋值语句创造出新的对象.</li>
+<li>对象引用对象。例如list,dict等可以包含多个对象，实际上，其中包含的是各个元素对象的引用。</li>
+<li>引用减少。可以使用del关键字来删除某个引用，或者引用重定向时，原对象的引用数会减少。</li>
+<li>可能会出现引用环问题。python通过对每个对象i引用计数，并会遍历所有对象i，对于每个对象i引用的对象j，将j相应的引用计数减1。然后python会将引用计数为0的回收。</li>
+</ol>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><ol>
+<li>在python中，当某一对象的引用计数为0时，将会被回收。但是python不会频繁地进行垃圾回收，因为会大大影响python的工作效率，python只会在特定的条件下，自动启动垃圾回收（python运行时，会自动记录其中分配对象和取消分配对象的次数，当两者的差值大于某阈值时，垃圾回收便会启动）。<ul>
+<li>gc.getthreshold()，可以查看垃圾回收启动的阈值。</li>
+</ul>
+</li>
+<li>分代回收</li>
+</ol>
+<ul>
+<li>理解：存活时间越久的对象，越不可能成为垃圾，python会减少这些对象的使用频率。</li>
+<li>分代：0，1，2</li>
+<li>0代为新建的对象，0代对象每次都会扫描。在0代对象扫描一定次数后，开始扫描1代对象。在1代对象扫描一定次数后，开始扫描2代对象。</li>
+</ul>
+<h2 id="内存池机制"><a href="#内存池机制" class="headerlink" title="内存池机制"></a>内存池机制</h2><ol>
+<li>python中有大内存和小内存。大内存使用malloc分配，小内存使用内存池分配。</li>
+<li>python内存池机制<ul>
+<li>最上层(3)，用户对python对象直接操作</li>
+<li>中间层(1,2)，内存池，分配256k及以下的内存。malloc分配内存，free不会释放内存，以方便下次使用。</li>
+<li>在下层(0)，分配大于256k的内存，malloc分配内存，free释放内存</li>
+<li>最小层(-1,-2)，有操作系统调用</li>
+</ul>
+</li>
+</ol>
 
       
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/28/SPM-CVPR2019/" rel="next" title="SPM-CVPR19-Tracking">
+                <i class="fa fa-chevron-left"></i> SPM-CVPR19-Tracking
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/08/offer-plan/" rel="prev" title="offer-plan">
+                offer-plan <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -411,6 +481,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -431,8 +505,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,6 +584,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python内存管理"><span class="nav-number">1.</span> <span class="nav-text">Python内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数"><span class="nav-number">1.1.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收"><span class="nav-number">1.2.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存池机制"><span class="nav-number">1.3.</span> <span class="nav-text">内存池机制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -654,6 +753,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

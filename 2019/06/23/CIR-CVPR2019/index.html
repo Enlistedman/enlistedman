@@ -87,23 +87,25 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="LJK' Notes" type="application/atom+xml">
 
 
 
 
 
-<meta name="description" content="CIR Deeper and Wider Siamese Networks for Real-Time Visual Tracking Code：https://gitlab.com/MSRA_NLPR/ deeper_wider_siamese_trackersOverview   针对深度网络(如Resnet)无法在siamese网络取得很好的效果。SiamRPN++也是从这个点出发去做，两者">
+
+<meta name="description" content="CIR Deeper and Wider Siamese Networks for Real-Time Visual Tracking Code：https://gitlab.com/MSRA_NLPR/ deeper_wider_siamese_trackers  Overview 针对深度网络(如Resnet)无法在siamese网络取得很好的效果。SiamRPN++也是从这个点出发去做，两者">
 <meta name="keywords" content="Tracking">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CIR-CVPR19-tracking">
 <meta property="og:url" content="http://yoursite.com/2019/06/23/CIR-CVPR2019/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="CIR Deeper and Wider Siamese Networks for Real-Time Visual Tracking Code：https://gitlab.com/MSRA_NLPR/ deeper_wider_siamese_trackersOverview   针对深度网络(如Resnet)无法在siamese网络取得很好的效果。SiamRPN++也是从这个点出发去做，两者">
+<meta property="og:description" content="CIR Deeper and Wider Siamese Networks for Real-Time Visual Tracking Code：https://gitlab.com/MSRA_NLPR/ deeper_wider_siamese_trackers  Overview 针对深度网络(如Resnet)无法在siamese网络取得很好的效果。SiamRPN++也是从这个点出发去做，两者">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-01T15:00:28.425Z">
+<meta property="og:updated_time" content="2019-07-02T01:57:19.176Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CIR-CVPR19-tracking">
-<meta name="twitter:description" content="CIR Deeper and Wider Siamese Networks for Real-Time Visual Tracking Code：https://gitlab.com/MSRA_NLPR/ deeper_wider_siamese_trackersOverview   针对深度网络(如Resnet)无法在siamese网络取得很好的效果。SiamRPN++也是从这个点出发去做，两者">
+<meta name="twitter:description" content="CIR Deeper and Wider Siamese Networks for Real-Time Visual Tracking Code：https://gitlab.com/MSRA_NLPR/ deeper_wider_siamese_trackers  Overview 针对深度网络(如Resnet)无法在siamese网络取得很好的效果。SiamRPN++也是从这个点出发去做，两者">
 
 
 
@@ -369,9 +371,9 @@
       
         <h1 id="CIR"><a href="#CIR" class="headerlink" title="CIR"></a>CIR</h1><ul>
 <li>Deeper and Wider Siamese Networks for Real-Time Visual Tracking</li>
-<li>Code：<a href="https://gitlab.com/MSRA_NLPR/" target="_blank" rel="noopener">https://gitlab.com/MSRA_NLPR/</a> deeper_wider_siamese_trackers<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2></li>
+<li>Code：<a href="https://gitlab.com/MSRA_NLPR/" target="_blank" rel="noopener">https://gitlab.com/MSRA_NLPR/</a> deeper_wider_siamese_trackers</li>
 </ul>
-<ol>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
 <li>针对深度网络(如Resnet)无法在siamese网络取得很好的效果。SiamRPN++也是从这个点出发去做，两者的都找出了其影响最大的原因–padding，不过解决方式不同。</li>
 <li>paper效果<ul>
 <li>siamFC/siamRPN在VOT16上的EAO提升了23.3%和8.8%</li>
@@ -406,7 +408,7 @@
 </ol>
 <h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><ol>
 <li>基于resnet bottleneck改进–CIR Unit<ul>
-<li>在resnet block之后添加了crop operation，将block之后padding的最外层元素给crop掉。这样feature map岂不是会越来越小！？</li>
+<li>在resnet block之后添加了crop operation，将block之后padding的<strong>最外层元素</strong>给crop掉。这样feature map岂不是会越来越小？</li>
 </ul>
 </li>
 <li>下采样CIR-D<ul>
@@ -549,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -560,7 +562,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -571,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -579,6 +581,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
