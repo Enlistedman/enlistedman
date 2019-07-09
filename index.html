@@ -279,6 +279,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/Yolo-v2-detection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LJK">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LJK' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/09/Yolo-v2-detection/" itemprop="url">Yolo-v2-CVPR17-detection</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-09T09:59:23+08:00">
+                2019-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/detection/" itemprop="url" rel="index">
+                    <span itemprop="name">detection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Yolo-v2"><a href="#Yolo-v2" class="headerlink" title="Yolo-v2"></a>Yolo-v2</h2><ul>
+<li>Yolo-v2（YOLO9000）: Better, Faster, Stronger</li>
+<li>Paper：<a href="https://arxiv.org/abs/1612.08242" target="_blank" rel="noopener">https://arxiv.org/abs/1612.08242</a></li>
+<li>Code: <a href="https://github.com/marvis/pytorch-yolo2" target="_blank" rel="noopener">https://github.com/marvis/pytorch-yolo2</a></li>
+</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>基于Yolo v1做了诸多改进。针对Yolo v1<strong>定位不精准，召回率低，对小物体不友好的问题，提出了位置限定预测，Anchor+卷积预测，pass-through操作</strong>等。</li>
+<li>同时，引入了<strong>BN，高分辨率输入，边界框聚类分析，darnet-19，多尺度训练</strong>等，提高了检测性能。</li>
+<li>最终在输入为544x544时，VOC07上mAP可达到78.6，相对应的fps为40（不同输入对应不同结果）</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/09/Yolo-v2-detection/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/SSD-detection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -527,7 +682,12 @@
 
       
         
-          <h1 id="Yolo-v1-2015"><a href="#Yolo-v1-2015" class="headerlink" title="Yolo v1 - 2015"></a>Yolo v1 - 2015</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+          <h2 id="Yolo-v1-2015"><a href="#Yolo-v1-2015" class="headerlink" title="Yolo v1 - 2015"></a>Yolo v1 - 2015</h2><ul>
+<li>Yolo-v1：You Only Look Once, Unified, Real-Time Object Detection.</li>
+<li>Paper：<a href="https://arxiv.org/abs/1506.02640" target="_blank" rel="noopener">https://arxiv.org/abs/1506.02640</a></li>
+<li>Code: <a href="https://github.com/gliese581gg/YOLO_tensorflow" target="_blank" rel="noopener">https://github.com/gliese581gg/YOLO_tensorflow</a></li>
+</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
 <li>经典的one-stage。直接对原图进行网格划分，将原图分为nxn的小块，然后通过卷积产生nxn的特征图，其一一对应，feature map上每个元素预测对应单元格内的分类/置信度/bbox偏移。</li>
 <li>速度：155fps，mAP：63.4</li>
 </ol>
@@ -1637,161 +1797,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/18/IOU-Net-ECCV2018/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="LJK">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LJK' Notes">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/18/IOU-Net-ECCV2018/" itemprop="url">IOU-Net-ECCV18-detection</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-18T14:36:44+08:00">
-                2019-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/papers/" itemprop="url" rel="index">
-                    <span itemprop="name">papers</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="IOU-Net"><a href="#IOU-Net" class="headerlink" title="IOU-Net"></a>IOU-Net</h1><ul>
-<li>Acquisition of Localization Confidence for Accurate Object Detection</li>
-<li>Paper : </li>
-<li>Code : </li>
-</ul>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
-<li>目前大多数的tracker都是通过cls score来确定物体的位置，但是分类得分高并不意味着定位的准确度高，所以用cls score去做NMS并不是特别合理，因为会把定位精准但分类得分低的卡掉。所以作者提出了使用iou score作为排序指标。</li>
-<li>Paper提出了IOU-guided NMS，PrROI（使用积分的方式计算ROI特征）。</li>
-<li>很有分量的文章，受益匪浅。</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/18/IOU-Net-ECCV2018/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1844,7 +1849,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="Tracking,">
+  <meta name="keywords" content="detection,">
 
 
 
@@ -94,21 +94,26 @@
 
 
 
-<meta name="description" content="SPM SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking Paper: Code:  Overview 将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&amp;gt;FM）实现。 感觉效果惊人！OTB-100上的AUC为0.687，VO">
-<meta name="keywords" content="Tracking">
+<meta name="description" content="Yolo-v2 Yolo-v2（YOLO9000）: Better, Faster, Stronger Paper：https://arxiv.org/abs/1612.08242 Code: https://github.com/marvis/pytorch-yolo2  Overview 基于Yolo v1做了诸多改进。针对Yolo v1定位不精准，召回率低，对小物体不友好的问题，提出了位置限">
+<meta name="keywords" content="detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SPM-CVPR19-Tracking">
-<meta property="og:url" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/index.html">
+<meta property="og:title" content="Yolo-v2-CVPR17-detection">
+<meta property="og:url" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="SPM SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking Paper: Code:  Overview 将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&amp;gt;FM）实现。 感觉效果惊人！OTB-100上的AUC为0.687，VO">
+<meta property="og:description" content="Yolo-v2 Yolo-v2（YOLO9000）: Better, Faster, Stronger Paper：https://arxiv.org/abs/1612.08242 Code: https://github.com/marvis/pytorch-yolo2  Overview 基于Yolo v1做了诸多改进。针对Yolo v1定位不精准，召回率低，对小物体不友好的问题，提出了位置限">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/framework.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/CM.PNG">
-<meta property="og:updated_time" content="2019-07-01T14:48:23.644Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/compare.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/darknet.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/loc_pred.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/pass-through.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/multi-scale.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/loss.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/wordtree.jpg">
+<meta property="og:updated_time" content="2019-07-09T08:16:09.881Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SPM-CVPR19-Tracking">
-<meta name="twitter:description" content="SPM SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking Paper: Code:  Overview 将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&amp;gt;FM）实现。 感觉效果惊人！OTB-100上的AUC为0.687，VO">
-<meta name="twitter:image" content="http://yoursite.com/2019/06/28/SPM-CVPR2019/framework.PNG">
+<meta name="twitter:title" content="Yolo-v2-CVPR17-detection">
+<meta name="twitter:description" content="Yolo-v2 Yolo-v2（YOLO9000）: Better, Faster, Stronger Paper：https://arxiv.org/abs/1612.08242 Code: https://github.com/marvis/pytorch-yolo2  Overview 基于Yolo v1做了诸多改进。针对Yolo v1定位不精准，召回率低，对小物体不友好的问题，提出了位置限">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/09/Yolo-v2-detection/compare.jpg">
 
 
 
@@ -138,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/28/SPM-CVPR2019/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/09/Yolo-v2-detection/">
 
 
 
 
 
-  <title>SPM-CVPR19-Tracking | LJK' Notes</title>
+  <title>Yolo-v2-CVPR17-detection | LJK' Notes</title>
   
 
 
@@ -283,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/SPM-CVPR2019/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/Yolo-v2-detection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -300,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SPM-CVPR19-Tracking</h1>
+          <h1 class="post-title" itemprop="name headline">Yolo-v2-CVPR17-detection</h1>
         
 
         <div class="post-meta">
@@ -312,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T18:36:36+08:00">
-                2019-06-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-09T09:59:23+08:00">
+                2019-07-09
               </time>
             
 
@@ -335,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/papers/" itemprop="url" rel="index">
-                    <span itemprop="name">papers</span>
+                  <a href="/categories/detection/" itemprop="url" rel="index">
+                    <span itemprop="name">detection</span>
                   </a>
                 </span>
 
@@ -372,75 +377,106 @@
       
 
       
-        <h1 id="SPM"><a href="#SPM" class="headerlink" title="SPM"></a>SPM</h1><ul>
-<li>SPM-Tracker: Series-ParallelMatchingforReal-TimeVisualObjectTracking</li>
-<li>Paper:</li>
-<li>Code:</li>
+        <h2 id="Yolo-v2"><a href="#Yolo-v2" class="headerlink" title="Yolo-v2"></a>Yolo-v2</h2><ul>
+<li>Yolo-v2（YOLO9000）: Better, Faster, Stronger</li>
+<li>Paper：<a href="https://arxiv.org/abs/1612.08242" target="_blank" rel="noopener">https://arxiv.org/abs/1612.08242</a></li>
+<li>Code: <a href="https://github.com/marvis/pytorch-yolo2" target="_blank" rel="noopener">https://github.com/marvis/pytorch-yolo2</a></li>
 </ul>
 <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
-<li>将Tracking中的两个需求（Robustness，deiscrimination）分别放在两个阶段（two-stage：CM-&gt;FM）实现。</li>
-<li>感觉效果惊人！OTB-100上的AUC为0.687，VOT-16上的EAO竟然达到了0.434，GPU上的fps为120，牛！</li>
-<li>抓住了siamese网络的缺点(相似物体容易drift)，解决方式就是在一阶段CM提取目标物体和其相似物体作为正样本，在二阶段FM在仔细区分object和其相似物体，也算是在image中尽可能多的提炼信息。</li>
+<li>基于Yolo v1做了诸多改进。针对Yolo v1<strong>定位不精准，召回率低，对小物体不友好的问题，提出了位置限定预测，Anchor+卷积预测，pass-through操作</strong>等。</li>
+<li>同时，引入了<strong>BN，高分辨率输入，边界框聚类分析，darnet-19，多尺度训练</strong>等，提高了检测性能。</li>
+<li>最终在输入为544x544时，VOC07上mAP可达到78.6，相对应的fps为40（不同输入对应不同结果）</li>
 </ol>
 <a id="more"></a>
 <h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol>
-<li>在tracking的过程中，既要求tracker有足够的判别力(针对相似物体或者相似背景等)，又需要足够的鲁棒性(对于物体的形变，光照等)。但是用一阶段的方法学习两种能力，其间会相互影响。</li>
-<li>现存的tracker速度太慢。</li>
+<li>Yolo v1虽然检测速度很快，但是<strong>定位精度不准，物体定位不准确，召回率低，对小物体不友好</strong>，精度效果不如RCNN好。</li>
 </ol>
-<h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><ol>
-<li>将Tracking分为两阶段来做，分别是CM，FM。CM负责鲁棒性，FM负责判别力。两阶段的融合省去了做多尺度测试。</li>
-<li>在CM阶段同一类物体都被作为同一物体，来提高CM的鲁棒性。在FM阶段通过距离学习子网络替代了cross corrrelation来提高网络的判别力。CM的输出作为FM的输入，最终的输出是两阶段的融合。</li>
-<li>SPM的优势<ul>
-<li>two-stage，容易train</li>
-<li>CM的输出作为FM的输入，正负样本的比例和难样本得到了平衡</li>
-<li>两个阶段输出的融合可以有更高的精度</li>
-<li>FM阶段有较少的proposals，省去了cross-correlation操作，改为使用trainable distance measure</li>
-</ul>
-</li>
-</ol>
-<h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><p><img src="/2019/06/28/SPM-CVPR2019/framework.PNG" alt="网络结构" title="网络结构"></p>
+<h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><p><img src="/2019/07/09/Yolo-v2-detection/compare.jpg" alt="compare" title="compare"></p>
 <ol>
-<li>网络结构<ul>
-<li>特征提取：Siamese Alexnet(在ImageNet上预训练)</li>
-<li>CM Stage使用SiamRPN的网络结构，最小化类内特性，专注于robust</li>
-<li>ROI Align用来为每个proposal生成固定长度的区域特征</li>
-<li>FM Stage为距离学习网络，最大化不同物体间的特性，专注于discrimination</li>
-<li>最终输出为两阶段decision的融合(score + bbox deltas)</li>
-</ul>
-</li>
-<li>CM阶段<br><img src="/2019/06/28/SPM-CVPR2019/CM.PNG" alt="CM_stage" title="CM"><ul>
-<li>将image中同类物体的<strong>中心区域（红，绿）</strong>都作为正样本，蓝色区域为忽略区域</li>
-</ul>
-</li>
-<li>FM阶段<ul>
-<li>该阶段的重点在于将CM阶段过滤后的object与背景/相似物体区分开   </li>
-<li>经CM过滤后剩余较少的proposal，所以丢弃了cross correlation操作，使用了新的关系网络来进行距离计算。</li>
-<li><ul>
-<li>对于每一个proposal，直接从feature map上crop然后使用ROI pooling生成固定大小的feature，同时将高低层的信息concatenation。</li>
-</ul>
-</li>
-<li>关系网络的输入是图像对concatenate的feature信息，后接1x1卷积，再接2个全连接层（256个neurons），用来cls和box regression</li>
-</ul>
-</li>
-<li>融合<ul>
-<li>最终CM,FM阶段的scores和bbox deltas进行加权融合</li>
-</ul>
-</li>
+<li><strong>Batch Normalization</strong></li>
 </ol>
-<h2 id="other-points"><a href="#other-points" class="headerlink" title="other points"></a>other points</h2><ol>
-<li>CF-based执行必不可少的是在线更新策略，但是结合deep learning是特别慢的，所以researcher使用static discriminative trackers，像siamFC等。</li>
-<li>SiamRPN使用RPN在提高bbox regression方面做了改进，DaSiamRPN使用样本策略(相似的同类物体作为正样本提高robust，语义信息接近的不同类物体作为负样本提高distrimination)在discrimination方面做了提升。</li>
-<li>网络细节<ul>
-<li>在使用的AlexNet中保留了padding，因为ROI align需要feature和source image的像素对齐。</li>
-<li>CM阶段使用no padding的中心feature(应该是从padding后的feature上crop下来)</li>
-<li>每个ROI pooling后的feature大小为6x6x640</li>
+<ul>
+<li>在Yolo v2中每一个卷积层之后，都添加BN层，抛弃Dropout。</li>
+<li>BN可以提高模型的收敛速度，起到一定的正则化效果，防止模型过拟合。</li>
+<li>使用BN后，mAP提高了2.4%</li>
 </ul>
-</li>
-<li>train细节<ul>
-<li>IOU 大于0.6，小于0.3的样本被保留。</li>
-<li>loss :两个阶段，四个loss的加权和， cls : cross entropy , reg : smooth l1 loss</li>
+<ol start="2">
+<li><strong>高分辨率输入</strong></li>
+</ol>
+<ul>
+<li>在Yolo v2中，使用448x448高分辨率输入，抛弃224x224低分辨率输入。</li>
+<li>低分辨率不利于检测模型。因为在ImageNet上的预训练模型使用的为224x224的输入，在检测数据上使用448x448进行finetune效果不好；Yolo v2增加了在ImageNet上使用448x448输入来finetune的步骤，使模型可以适应检测数据上的高分辨率输入。</li>
+<li>使用高分辨率后，mAP提高了4%</li>
 </ul>
-</li>
+<ol start="3">
+<li><strong>卷积预测+Anchors</strong></li>
+</ol>
+<ul>
+<li>更换FC层预测为Conv预测，同时使用anchor box。</li>
+<li>Yolo v2采用416x416的输入，stride为32，是为了<strong>保证最后feature map的大小为奇数（13x13）</strong>，其包含一个中心点，对于一些大物体，中心点通常落到图片的中心位置，使用feature map中心点去预测这些物体会相对容易。</li>
+<li>Yolo v2对于每一个anchor box都独立预测一套分类概率</li>
+<li>使用anchor之后，召回率提高了7%</li>
+</ul>
+<ol start="4">
+<li><strong>边界框聚类分析</strong></li>
+</ol>
+<ul>
+<li>Yolo v2使用K-means，对训练集中的边界框使用box与中心box的IOU值作为指标进行聚类分析，改善在Faster RCNN和SSD中人工设定先验框的主观性。Yolo v2最终选取5个聚类中心作为先验框。</li>
+<li>对于不同的数据集可以分析出更合适的先验框尺度，可以更贴近数据集中gt的尺度。</li>
+<li>使用聚类分析后，mAP提高了0.4%</li>
+</ul>
+<ol start="5">
+<li><strong>DarkNet-19</strong><br><img src="/2019/07/09/Yolo-v2-detection/darknet.jpg" alt="DarkNet-19" title="DarkNet-19"></li>
+</ol>
+<ul>
+<li>使用特征提取网络，抛弃GoogLeNet结构。</li>
+<li>DarkNet-19使用19个卷积层和5个max pool层，使用7个1x1卷积来减少参数/计算量。最后一层使用global avgpooling（滑窗大小=feature map大小）。</li>
+<li>计算量减少33%</li>
+</ul>
+<ol start="6">
+<li><strong>位置预测限定</strong>   </li>
+</ol>
+<ul>
+<li>沿用Yolo v1的思想，预测边界框中心点相对于对应cell左上角的偏移量，相当于把中心点约束在当前的cell内。抛弃无约束的位置预测。</li>
+<li>其中，bx，by，bw，bh分别为feature map上预测框的中心点坐标和宽高；cx，cy为cell左上角的坐标（每个cell的大小都为1x1）；tx，ty，tw，th分别为预测的坐标偏移量；pw，ph为先验框的宽高；W，H为特征图的大小。img_w，img_h为原始图的宽高。</li>
+<li>边界框的最终位置为：bx / W <em> img_w，by / H </em> img_h，bw / W <em> img_w，bh / H </em> img_h</li>
+<li>使用该约束预测 + 聚类分析，mAP提升5%<br><img src="/2019/07/09/Yolo-v2-detection/loc_pred.jpg" alt="loc-pred" title="loc-pred"></li>
+</ul>
+<ol start="7">
+<li><strong>pass through层</strong></li>
+</ol>
+<ul>
+<li>pass through层将DarkNet-19中最后一个max pooling层的输入（26x26x256）进行pass through变换操作得到（13x13x2048）,与输出（13x13x1024）进行连接得到（13x13x3072）,然后卷积在该特征图上进行预测。</li>
+<li>该操作使mAP提高了1%<br><img src="/2019/07/09/Yolo-v2-detection/pass-through.jpg" alt="pass-through" title="pass-through"></li>
+</ul>
+<ol start="8">
+<li><strong>多尺度输入训练</strong></li>
+</ol>
+<ul>
+<li>采用不同大小的图片作为输入，使其可以适应多种大小的图片输入。</li>
+<li>每个10个迭代周期，随机选择一种输入大小（必须为32的倍数，如320，352…608），同时对最后检测层进行修改后训练。<br><img src="/2019/07/09/Yolo-v2-detection/multi-scale.jpg" alt="multi-scale" title="multi-scale"></li>
+</ul>
+<h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><ol>
+<li><strong>训练过程</strong></li>
+</ol>
+<ul>
+<li>阶段一，使用输入大小为224x224，在ImageNet分类数据集上对DarkNet-19进行预训练。</li>
+<li>阶段二，调整输入大小为448x448，继续在ImageNet分类数据集上对DarkNet-19进行fine-tune。</li>
+<li>阶段三，修改分类模型为检测模型，在检测数据集上进行fine-tune。网络修改包括（网路结构可视化）：移除最后一个卷积层、global avgpooling层以及softmax层，并且新增了三个 3x3卷积层，同时增加了一个passthrough层，最后使用1x1卷积层输出预测结果。</li>
+</ul>
+<ol start="2">
+<li><strong>损失函数</strong><br><img src="/2019/07/09/Yolo-v2-detection/loss.jpg" alt="loss" title="loss"></li>
+</ol>
+<ul>
+<li>第一部分为，背景（iou小于设定阈值）的置信度误差。</li>
+<li>第二部分为，先验框与预测框的坐标误差，只在前12800次迭代中计算。</li>
+<li>第三部分为，计算与gt匹配的预测框的各部分的loss，坐标误差，置信度误差，分类误差。一个gt只匹配一个预测框，其余的大于iou阈值的预测框的loss不计算。而且Yolo v1中使用平方根降低box大小对loss的影响，Yolo v2使用权重稀系数来控制loss，尺度小一些的box的权重高一些。</li>
+</ul>
+<h2 id="Yolo9000"><a href="#Yolo9000" class="headerlink" title="Yolo9000"></a>Yolo9000</h2><ol>
+<li>提出了一种<strong>分类和检测联合训练策略</strong>。对于检测数据集，可以用来学习预测物体的边界框、置信度以及为物体分类，而对于分类数据集可以仅用来学习分类，但是其可以大大扩充模型所能检测的物体种类。</li>
+<li>因为检测和分类两者类别并不完全互斥，所以作者提出了一种层级分类方法。即根据各个类别之间的从属关系立一种树结构WordTree。</li>
+<li>WordTree中的根节点为”physical object”，每个节点的子节点都属于同一子类，可以对它们进行softmax处理。在给出某个类别的预测概率时，需要找到其所在的位置，遍历这个path，然后计算path上各个节点的概率之积。</li>
+<li>在<strong>训练</strong>时，如果是检测样本，按照YOLOv2的loss计算误差，而对于分类样本，只计算分类误差。在<strong>预测</strong>时，YOLOv2给出的置信度，边界框位置，一个树状概率图。在这个概率图中找到概率最高的路径，当达到某一个阈值时停止，就用当前节点表示预测的类别。<br><img src="/2019/07/09/Yolo-v2-detection/wordtree.jpg" alt="wordtree" title="wordtree"></li>
 </ol>
 
       
@@ -459,7 +495,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tracking/" rel="tag"># Tracking</a>
+            <a href="/tags/detection/" rel="tag"># detection</a>
           
         </div>
       
@@ -472,8 +508,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/25/DeepSort-CVPR2017/" rel="next" title="Deepsort-tracking">
-                <i class="fa fa-chevron-left"></i> Deepsort-tracking
+              <a href="/2019/07/08/SSD-detection/" rel="next" title="SSD-detection">
+                <i class="fa fa-chevron-left"></i> SSD-detection
               </a>
             
           </div>
@@ -481,10 +517,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/07/python内存管理/" rel="prev" title="python内存管理">
-                python内存管理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -625,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SPM"><span class="nav-number">1.</span> <span class="nav-text">SPM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other-points"><span class="nav-number">1.5.</span> <span class="nav-text">other points</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Yolo-v2"><span class="nav-number">1.</span> <span class="nav-text">Yolo-v2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">2.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">3.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">4.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">5.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yolo9000"><span class="nav-number">6.</span> <span class="nav-text">Yolo9000</span></a></li></ol></div>
             
 
           </div>
