@@ -94,21 +94,25 @@
 
 
 
-<meta name="description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
+<meta name="description" content="Faster-rcnn-NIPS2015 Faster RCNN：Towards Real-Time Object Detection with Region Proposal Networks Paper：https://arxiv.org/abs/1506.01497 Code ：https://github.com/chenyuntc/simple-faster-rcnn-pytorch 参">
 <meta name="keywords" content="detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GARPN-CVPR19-detection">
-<meta property="og:url" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/index.html">
+<meta property="og:title" content="Faster-rcnn-NIPS2015-detection">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
+<meta property="og:description" content="Faster-rcnn-NIPS2015 Faster RCNN：Towards Real-Time Object Detection with Region Proposal Networks Paper：https://arxiv.org/abs/1506.01497 Code ：https://github.com/chenyuntc/simple-faster-rcnn-pytorch 参">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/network.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/anchor_location.PNG">
-<meta property="og:updated_time" content="2019-05-10T06:49:36.014Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/main.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/network1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/VGG2.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/RPN.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/ROIHead.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/result.PNG">
+<meta property="og:updated_time" content="2019-07-10T08:58:28.696Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GARPN-CVPR19-detection">
-<meta name="twitter:description" content="Overview 主要思想      先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。 anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature">
-<meta name="twitter:image" content="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/network.PNG">
+<meta name="twitter:title" content="Faster-rcnn-NIPS2015-detection">
+<meta name="twitter:description" content="Faster-rcnn-NIPS2015 Faster RCNN：Towards Real-Time Object Detection with Region Proposal Networks Paper：https://arxiv.org/abs/1506.01497 Code ：https://github.com/chenyuntc/simple-faster-rcnn-pytorch 参">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/10/faster-rcnn-detection/main.PNG">
 
 
 
@@ -138,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/faster-rcnn-detection/">
 
 
 
 
 
-  <title>GARPN-CVPR19-detection | LJK' Notes</title>
+  <title>Faster-rcnn-NIPS2015-detection | LJK' Notes</title>
   
 
 
@@ -283,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/GARPN-CVPR19-detection/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/faster-rcnn-detection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -300,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">GARPN-CVPR19-detection</h1>
+          <h1 class="post-title" itemprop="name headline">Faster-rcnn-NIPS2015-detection</h1>
         
 
         <div class="post-meta">
@@ -312,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T10:36:24+08:00">
-                2019-05-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T11:16:30+08:00">
+                2019-07-10
               </time>
             
 
@@ -335,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/papers/" itemprop="url" rel="index">
-                    <span itemprop="name">papers</span>
+                  <a href="/categories/detection/" itemprop="url" rel="index">
+                    <span itemprop="name">detection</span>
                   </a>
                 </span>
 
@@ -372,72 +376,88 @@
       
 
       
-        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><ol>
-<li>主要思想     <ul>
-<li>先前的anchor是在feature map上的每个点都设定(均匀分布)，本文的思想是先预测最有可能出现object中心的区域，然后在该区域进行anchor w h的预测，从而确定了anchors，减少了计算量。</li>
-<li>anchor和feature map的匹配问题，根据anchor shape计算deformable conv的offset，从而对feature map进行变换，以生成新的feature map。</li>
-<li>在新的feature map上进行分类和回归。</li>
+        <h2 id="Faster-rcnn-NIPS2015"><a href="#Faster-rcnn-NIPS2015" class="headerlink" title="Faster-rcnn-NIPS2015"></a>Faster-rcnn-NIPS2015</h2><ul>
+<li>Faster RCNN：Towards Real-Time Object Detection with Region Proposal Networks</li>
+<li>Paper：<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">https://arxiv.org/abs/1506.01497</a></li>
+<li>Code ：<a href="https://github.com/chenyuntc/simple-faster-rcnn-pytorch" target="_blank" rel="noopener">https://github.com/chenyuntc/simple-faster-rcnn-pytorch</a></li>
+<li>参考：<a href="https://zhuanlan.zhihu.com/p/32404424" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32404424</a></li>
 </ul>
-</li>
-<li>效果<ul>
-<li>在resnet50-fpn作为backbone，其recall(AR)提高了9.1个点，mAP提高了1.2-2.7个点。</li>
-</ul>
-</li>
-<li>paper: <a href="https://arxiv.org/pdf/1901.03278.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1901.03278.pdf</a></li>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>使用RPN代替了耗时的selective search操作。</li>
+<li>大致过程如下图。<strong>特征提取，RPN提取ROI（二分类+回归），ROI Head（多分类+回归）</strong><br><img src="/2019/07/10/faster-rcnn-detection/main.PNG" alt="main-framework" title="main-framework"></li>
 </ol>
 <a id="more"></a>
-<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><ul>
-<li>之前的anchor尺度/比例(超参)需要人为设定，设定不好对性能影响较大。</li>
-<li>前anchor方法中的大多数anchor都分布在背景区域，对于proposal没有作用，徒增计算量。</li>
-<li>数据集中的object形变较大，预定义的anchor不一定能满足其object尺寸。</li>
-<li>所有。出现了本文稀疏，形状可变的anchor。</li>
+<h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol>
+<li>基于<strong>selective search的方法速度太慢</strong>。</li>
+<li><strong>二阶段</strong>（粗细粒度的筛选），可以使得检测的精度极大提升。</li>
+</ol>
+<h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><ol>
+<li>主要贡献在于，使用RPN替代了selective search方法。</li>
+<li>Faster RCNN可主要分为三个阶段。</li>
+</ol>
+<ul>
+<li>阶段一，<strong>特征提取</strong>。</li>
+<li>阶段二，使用<strong>RPN提取ROIs</strong>，并对其中部分样本（256）进行二分类和回归，NMS过滤。</li>
+<li>阶段三，使用<strong>ROI Pooling</strong>，对ROIs中的部分ROI进行Pooling操作统一到相同尺度，在做分类和回归，NMS过滤。</li>
 </ul>
-<h1 id="Formulation"><a href="#Formulation" class="headerlink" title="Formulation"></a>Formulation</h1><ul>
-<li>p(x,y,w,h|I) = p(x,y|I)p(w,h|x,y,I)<br>将anchor的坐标概率分布分为两个条件概率，即先进行anchor的位置预测，再进行形状预测。</li>
+<h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2><ol>
+<li>Faster RCNN主要分三步：特征提取，RPN提取ROIs（<strong>二分类</strong>+回归），ROI Head/Pooling（<strong>多分类</strong>+回归）<br><img src="/2019/07/10/faster-rcnn-detection/network1.jpg" alt="network" title="network"><h3 id="Feature-Extractor"><a href="#Feature-Extractor" class="headerlink" title="Feature Extractor"></a>Feature Extractor</h3></li>
+<li>一般使用与训练好的VGG16，前4层的卷积的学习率设为0（为节省显存），Conv5_3的feature作为输出；VGG最后的三层全连接层的前两层，一般用来初始化RoIHead的部分参数。<br><img src="/2019/07/10/faster-rcnn-detection/VGG2.jpg" alt="VGG16" title="VGG16"><h3 id="RPN"><a href="#RPN" class="headerlink" title="RPN"></a>RPN</h3></li>
+<li>每个位置使用的anchor个数为9个，所以整张图大概会生成20000个anchors。</li>
+<li><strong>RPN结构</strong><br>3x3的卷积不太清楚什么用意？后接两个1x1的卷积分别用于二分类（9x2）和位置回归（9x4）。</li>
+<li><strong>AnchorTargetCreator</strong><br>RPN利用AnchorTargetCreator从20000个anchor中选取256个做分类和回归。</li>
+</ol>
+<ul>
+<li>计算所有anchors与GT的iou，每个GT对应IOU<strong>最高</strong>的anchor作为正样本。</li>
+<li>其余样本随机选择与GT的iou大于阈值0.7的样本作为正样本。</li>
+<li>随机选择与GT的iou小于阈值0.1的样本作为负样本。正负样本的比例大概为1：1，总数为256。</li>
 </ul>
-<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><h2 id="network-architecture"><a href="#network-architecture" class="headerlink" title="network architecture"></a>network architecture</h2><p><img src="/2019/05/08/GARPN-CVPR19-detection/network.PNG" alt="网络结构" title="network architecture">   </p>
-<h2 id="network-detailed"><a href="#network-detailed" class="headerlink" title="network detailed"></a>network detailed</h2><ul>
-<li>主要为两部分：anchor生成+feature调整</li>
-<li>anchor生成部分：<br>F1(feature map)通过N_L分支预测anchor location,通过N_s预测anchor shape。</li>
-<li>feature adaption:<br>使用anchor信息生成可变形卷积的offset，在使用可变形卷积对feature map进行调整，以生成新的feature map。</li>
+<ol start="4">
+<li><strong>ProposalCreator</strong><br>RPN利用ProposalCreator生成ROIs。</li>
+</ol>
+<ul>
+<li>计算20000个anchors属于前景的概率，对应的位置参数</li>
+<li>选取概率较大的12000个anchors，利用回归的位置参数修正这些anchors</li>
+<li>使用NMS，选择出anchors最大的2000个ROIs</li>
+<li>inference时候，12000，2000分别对应6000，300</li>
 </ul>
-<h2 id="anchor-location-predict"><a href="#anchor-location-predict" class="headerlink" title="anchor location predict"></a>anchor location predict</h2><ul>
-<li>二分类问题</li>
-<li>在feature map上预测可能出现object中心点的位置(对应原图的一区域)，该中心区域为正样本，超出gt的区域作为负样本，gt和中心区域的部分忽略。</li>
-<li>N_L子网络，在feature map上使用1x1卷积计算出一个score map,再使用sigmoid将score转换为概率。</li>
-<li><img src="/2019/05/08/GARPN-CVPR19-detection/anchor_location.PNG" alt="anchor定位" title="anchor location"></li>
+<ol start="5">
+<li><strong>损失计算</strong></li>
+</ol>
+<ul>
+<li>分类损失，使用交叉熵。</li>
+<li>回归损失，使用Smooth L1 loss<br><img src="/2019/07/10/faster-rcnn-detection/RPN.jpg" alt="RPN" title="RPN"><h3 id="ROI-Head-pooling"><a href="#ROI-Head-pooling" class="headerlink" title="ROI Head/pooling"></a>ROI Head/pooling</h3></li>
 </ul>
-<h2 id="anchor-shape-predict"><a href="#anchor-shape-predict" class="headerlink" title="anchor shape predict"></a>anchor shape predict</h2><ul>
-<li>回归问题</li>
-<li>该部分使用IOU loss。设定了几组常见的w,h,然后计算anchors与所有gt的IOU,然后将该anchor分配给IOU最大的gt。</li>
-<li>w = σ·s·e_dw, h = σ·s·e_dh<br>N_s子网络预测输出dw,dh；dw,dh通过上式进行变换得到w,h。其中，s为stride，σ为经验比例因子(文中设定为8)。</li>
-<li>This nonlinear transformation projects the output space from approximate [0,1000] to [−1,1], leading to an easier and stable learning target. 这句没太懂，是原来直接预测w,h(范围在[0,1000]),现在通过预测dw,dh(范围在[-1,1])经e后可达到原先效果？<strong>这里不太理解</strong></li>
-</ul>
-<h2 id="feature-adaption"><a href="#feature-adaption" class="headerlink" title="feature adaption"></a>feature adaption</h2><ul>
-<li>为什么呢？文章说是每个anchor都有自己的大小，与feature不是很好的匹配；而且原本的feature map并不知道预测的anchor的形状，但是分类和回归确是基于anchor做的？所以把anchor的形状信息融入到了feature map中?<strong>这里不太理解</strong></li>
-<li>N_t子网络(使用3x3的可变卷积),根据anchor shape预测deformable conv的offset(offset是通过anchor的w和h经过一个1x1conv得到的),去做一个feature map的变换，以得到新的feature map。<strong>offset计算要看代码</strong></li>
-<li>在新的feature map上进行分类和回归。</li>
-<li>FA提升了近5个点。</li>
-</ul>
-<h1 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h1><p>&ensp;&ensp;问题：proposal质量提升很多，但是detector上的性能提升有限。</p>
 <ol>
-<li>减少proposal的数量</li>
-<li>增大训练时正样本IOU阈值(重要，提升了2.7个点)</li>
+<li><strong>ProposalTargetCreator</strong></li>
 </ol>
-<h1 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h1><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
-<li>论文假设图像中的目标是稀疏的。如果是稠密图像，比如车站或广场的拥挤人群，检测效果有待检验。</li>
-<li>每一个点只产生一个anchor，那么对于那些目标中心重合，即一个点需要负责检测两个目标，似乎无法处理。</li>
-<li>采用deformable卷积会相对地降低速度，同时根据DCN v2的分析，在deformable卷积中加入可调节的机制可能会更好。</li>
+<ul>
+<li>ROIs和GT的iou大于0.5的选择32个。</li>
+<li>ROIs和GT的iou小于0/1的选择96个。</li>
+</ul>
+<ol start="2">
+<li><strong>ROI Pooling</strong><br>在RPN提供的2000个ROIs上，首先使用ProposalTargetCreator挑选128个ROIs，然后使用ROI Pooling将其pooling到统一的尺寸（128x512x7x7，ROI pooling是为了<strong>共享权重</strong>），继续进行分类和回归。FC21用来分类，20+1背景；F84用来回归，21x4。</li>
+<li><strong>损失计算</strong></li>
 </ol>
-<h2 id="Deformable-conv"><a href="#Deformable-conv" class="headerlink" title="Deformable conv"></a>Deformable conv</h2><ul>
-<li><a href="https://www.zhihu.com/question/57493889" target="_blank" rel="noopener">Deformable conv简介-CVPR2017</a></li>
+<ul>
+<li>分类，交叉熵；回归，Smooth L1 loss</li>
+<li>回归，只对ROI中的正样本计算loss<br><img src="/2019/07/10/faster-rcnn-detection/ROIHead.jpg" alt="ROI Head" title="ROI Head"></li>
 </ul>
-<h2 id="评价标准"><a href="#评价标准" class="headerlink" title="评价标准"></a>评价标准</h2><ul>
-<li>R(recall): 查全率，R = 预测出的正样本/原数据集中的所有正样本</li>
-<li>AR : 平均查全率</li>
-<li>P(precision)：查准率，P = 预测中的正样本/预测出的所有样本</li>
-<li>AP : 平均查准率</li>
+<ol start="4">
+<li>小结</li>
+</ol>
+<ul>
+<li>RPN阶段是前/背景的二分类，ROIHead是21分类</li>
+<li>RPN阶段，ROIHead阶段都做了NMS</li>
+<li>RPN阶段，ROIHead阶段都进行了回归<h3 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h3></li>
 </ul>
+<ol>
+<li>4种损失加权求和</li>
+<li>RPN分类/回归损失，ROI分类/回归损失</li>
+</ol>
+<h2 id="result"><a href="#result" class="headerlink" title="result"></a>result</h2><ol>
+<li>mAP为0.699，fps为5<br><img src="/2019/07/10/faster-rcnn-detection/result.PNG" alt="result" title="result"></li>
+</ol>
 
       
     </div>
@@ -468,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/10/FocaLoss-CVPR18-detection/" rel="next" title="FocaLoss-CVPR18-detection">
-                <i class="fa fa-chevron-left"></i> FocaLoss-CVPR18-detection
+              <a href="/2019/07/09/Yolo-v3-detection/" rel="next" title="Yolo-v3-CVPR2018-detection">
+                <i class="fa fa-chevron-left"></i> Yolo-v3-CVPR2018-detection
               </a>
             
           </div>
@@ -477,10 +497,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/09/GIOU-CVPR19-detection/" rel="prev" title="GIOU-CVPR19-detection">
-                GIOU-CVPR19-detection <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -621,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Motivation"><span class="nav-number">2.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Formulation"><span class="nav-number">3.</span> <span class="nav-text">Formulation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">4.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#network-architecture"><span class="nav-number">4.1.</span> <span class="nav-text">network architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#network-detailed"><span class="nav-number">4.2.</span> <span class="nav-text">network detailed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-location-predict"><span class="nav-number">4.3.</span> <span class="nav-text">anchor location predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchor-shape-predict"><span class="nav-number">4.4.</span> <span class="nav-text">anchor shape predict</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#feature-adaption"><span class="nav-number">4.5.</span> <span class="nav-text">feature adaption</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tricks"><span class="nav-number">5.</span> <span class="nav-text">Tricks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Others"><span class="nav-number">6.</span> <span class="nav-text">Others</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缺点"><span class="nav-number">6.1.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deformable-conv"><span class="nav-number">6.2.</span> <span class="nav-text">Deformable conv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价标准"><span class="nav-number">6.3.</span> <span class="nav-text">评价标准</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-rcnn-NIPS2015"><span class="nav-number">1.</span> <span class="nav-text">Faster-rcnn-NIPS2015</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">2.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">3.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">4.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">5.</span> <span class="nav-text">how</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-Extractor"><span class="nav-number">5.1.</span> <span class="nav-text">Feature Extractor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RPN"><span class="nav-number">5.2.</span> <span class="nav-text">RPN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ROI-Head-pooling"><span class="nav-number">5.3.</span> <span class="nav-text">ROI Head/pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss"><span class="nav-number">5.4.</span> <span class="nav-text">Loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">6.</span> <span class="nav-text">result</span></a></li></ol></div>
             
 
           </div>
