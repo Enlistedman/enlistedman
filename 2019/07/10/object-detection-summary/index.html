@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function () {
+        if ('') {
+            if (prompt('Please input the page's password:') !== '') {
+                alert('password error！');
+                if (history.length === 1) {
+                    location.replace("https://enlistedman.github.io/"); // 这里替换成你的首页
+                } else {
+                    history.back();
+                }
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="LJK' Notes" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="object-detection-summary">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/object-detection-summary/index.html">
+<meta property="og:site_name" content="LJK&#39; Notes">
+<meta property="og:description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/RCNN.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/YOLOV1.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/FASTERRCNN.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/SSD.PNG">
+<meta property="og:updated_time" content="2019-07-21T10:35:03.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="object-detection-summary">
+<meta name="twitter:description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/10/object-detection-summary/RCNN.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/object-detection-summary/">
+
+
+
+
+
+  <title>object-detection-summary | LJK' Notes</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/enlistedman"><img style="position: absolute; top: 0; right: 0;border: 0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LJK' Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/object-detection-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LJK">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LJK' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">object-detection-summary</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-10T18:07:38+08:00">
+                2019-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="目标检测（待完善）"><a href="#目标检测（待完善）" class="headerlink" title="目标检测（待完善）"></a>目标检测（待完善）</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><ol>
+<li><strong>one-stage</strong></li>
+</ol>
+<ul>
+<li>主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步</li>
+<li>代表：Yolo，SSD</li>
+<li>特点：速度快，准确率一般没有two-stage高</li>
+</ul>
+<ol start="2">
+<li><strong>two-stage</strong></li>
+</ol>
+<ul>
+<li>主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归</li>
+<li>代表：R-CNN，Fast R-CNN, Faster R-CNN</li>
+</ul>
+<a id="more"></a>
+<h2 id="R-CNN-2013-11-mAP-58-5"><a href="#R-CNN-2013-11-mAP-58-5" class="headerlink" title="R-CNN - 2013.11 - mAP:58.5"></a>R-CNN - 2013.11 - mAP:58.5</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/RCNN.jpg" alt="RCNN" title="RCNN">   </p>
+<ol>
+<li><strong>步骤</strong>  </li>
+</ol>
+<ul>
+<li>找出候选框；   </li>
+<li>利用CNN提取特征向量；   </li>
+<li>利用SVM进行特征向量分类（N个SVM分类器）。</li>
+</ul>
+<ol>
+<li><strong>selective search</strong>   </li>
+</ol>
+<ul>
+<li>首先通过基于图的图像分割方法初始化原始区域，就是将图像分割成很多很多的小块。</li>
+<li>然后我们使用贪心策略，计算每两个相邻的区域的相似度(纹理/颜色/大小)，然后每次合并最相似的两块，直到最终只剩下一块完整的图片。   </li>
+<li>然后这其中每次产生的图像块包括合并的图像块我们都保存下来，这样就得到图像的分层表示。<h3 id="特点-改进点"><a href="#特点-改进点" class="headerlink" title="特点/改进点"></a>特点/改进点</h3></li>
+</ul>
+<ol>
+<li>使用selective search提取预测框。</li>
+<li>使用CNN进行特征提取。<h3 id="优-缺点"><a href="#优-缺点" class="headerlink" title="优/缺点"></a>优/缺点</h3></li>
+<li><strong>优点</strong></li>
+</ol>
+<ul>
+<li>是CNN在目标检测领域得开篇之作，变检测问题为分类问题。</li>
+</ul>
+<ol start="2">
+<li><strong>缺点</strong></li>
+</ol>
+<ul>
+<li>需要训练三个模型（proposal，CNN，Regression）</li>
+<li>selective search仍然十分耗时</li>
+<li>存在大量得重复计算</li>
+</ul>
+<h2 id="Fast-RCNN-2015-04-mAP-70-fps-0-5"><a href="#Fast-RCNN-2015-04-mAP-70-fps-0-5" class="headerlink" title="Fast RCNN - 2015.04 - mAP:70,fps:0.5"></a>Fast RCNN - 2015.04 - mAP:70,fps:0.5</h2><h3 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h3><h3 id="特点-改进点-1"><a href="#特点-改进点-1" class="headerlink" title="特点/改进点"></a>特点/改进点</h3><h3 id="优-缺点-1"><a href="#优-缺点-1" class="headerlink" title="优/缺点"></a>优/缺点</h3><h2 id="YOLO-v1-2015-06-mAP-63-4-fps-45"><a href="#YOLO-v1-2015-06-mAP-63-4-fps-45" class="headerlink" title="YOLO v1 - 2015.06 - mAP:63.4,fps:45"></a>YOLO v1 - 2015.06 - mAP:63.4,fps:45</h2><h3 id="网络结构-2"><a href="#网络结构-2" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/YOLOV1.PNG" alt="Yolo v1" title="Yolo v1">   </p>
+<ol>
+<li><strong>步骤</strong></li>
+</ol>
+<ul>
+<li>对输入图像进行<strong>网格划分</strong>。</li>
+<li>使用CNN网络生成对应大小的feature map，最后使用两个FC层来进行预测。<h3 id="特点-改进点-2"><a href="#特点-改进点-2" class="headerlink" title="特点/改进点"></a>特点/改进点</h3></li>
+</ul>
+<ol>
+<li>抛弃了滑动窗口和RCNN中selective search的方法，而是将image切分为7x7的网格，利用卷积生成相同大小的feature map来进行预测。<h3 id="优-缺点-2"><a href="#优-缺点-2" class="headerlink" title="优/缺点"></a>优/缺点</h3></li>
+<li>优点</li>
+</ol>
+<ul>
+<li>速度很快，155fps</li>
+<li>不容易对背景误判</li>
+</ul>
+<ol start="2">
+<li>缺点</li>
+</ol>
+<ul>
+<li>每个cell预测2个bbox，但共享一个类别，对密集物体表现不好。</li>
+<li>定位不精准</li>
+<li>对小物体不友好</li>
+</ul>
+<h2 id="Faster-RCNN-2015-06-mAP-73-2-fps-7"><a href="#Faster-RCNN-2015-06-mAP-73-2-fps-7" class="headerlink" title="Faster RCNN - 2015.06 - mAP:73.2,fps:7"></a>Faster RCNN - 2015.06 - mAP:73.2,fps:7</h2><h3 id="网络结构-3"><a href="#网络结构-3" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/FASTERRCNN.PNG" alt="Faster RCNN" title="Faster RCNN"></p>
+<ol>
+<li><strong>步骤</strong></li>
+</ol>
+<ul>
+<li>阶段一，特征提取。</li>
+<li>阶段二，使用<strong>RPN提取ROIs</strong>，并对其中部分样本（256）进行二分类和回归，NMS过滤。</li>
+<li>阶段三，使用<strong>ROI Pooling</strong>，对ROIs中的部分ROI进行Pooling操作统一到相同尺度，在做分类和回归，NMS过滤。   <h3 id="特点-改进点-3"><a href="#特点-改进点-3" class="headerlink" title="特点/改进点"></a>特点/改进点</h3></li>
+</ul>
+<ol>
+<li>使用RPN网络代替selective search，极大减少了生成proposals的时间。</li>
+<li>两阶段（粗分类/回归+细分类/回归），可以获得更高的精度。<h3 id="优-缺点-3"><a href="#优-缺点-3" class="headerlink" title="优/缺点"></a>优/缺点</h3></li>
+<li>优点</li>
+</ol>
+<ul>
+<li>检测精度极大提升</li>
+</ul>
+<ol start="2">
+<li>缺点</li>
+</ol>
+<ul>
+<li>速度比Yolo慢</li>
+</ul>
+<h2 id="SSD-2015-12-mAP-72-1-fps-58"><a href="#SSD-2015-12-mAP-72-1-fps-58" class="headerlink" title="SSD - 2015.12 - mAP:72.1,fps:58"></a>SSD - 2015.12 - mAP:72.1,fps:58</h2><h3 id="网络结构-4"><a href="#网络结构-4" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/SSD.PNG" alt="SSD" title="SSD"></p>
+<ol>
+<li><strong>步骤</strong></li>
+</ol>
+<ul>
+<li>输入图像可以为300x300/512x512</li>
+<li>使用CNN（VGG16改装版）进行特征提取。</li>
+<li>结合5层不同尺度的feature map进行不同尺度（<strong>anchors</strong>）物体的预测。<h3 id="特点-改进点-4"><a href="#特点-改进点-4" class="headerlink" title="特点/改进点"></a>特点/改进点</h3></li>
+</ul>
+<ol>
+<li>改Yolo的FC层预测为<strong>卷积预测</strong>，每个预测框输出一套对应的检测值。</li>
+<li>使用了<strong>FPN</strong>（5层）。</li>
+<li>借鉴了Faster RCNN的<strong>anchor</strong>。<h3 id="优-缺点-4"><a href="#优-缺点-4" class="headerlink" title="优/缺点"></a>优/缺点</h3></li>
+<li>优点</li>
+</ol>
+<ul>
+<li>准确度比Yolo好</li>
+<li>对小物体的检测也比Yolo好</li>
+</ul>
+<h2 id="YOLO-v2-2016"><a href="#YOLO-v2-2016" class="headerlink" title="YOLO v2 - 2016"></a>YOLO v2 - 2016</h2><h3 id="网络结构-5"><a href="#网络结构-5" class="headerlink" title="网络结构"></a>网络结构</h3><h3 id="特点-改进点-5"><a href="#特点-改进点-5" class="headerlink" title="特点/改进点"></a>特点/改进点</h3><ol>
+<li>高分辨率输入</li>
+<li>BN层</li>
+<li>卷积预测 + anchors</li>
+<li>边界框聚类分析</li>
+<li>DarkNet-19</li>
+<li>位置预测限定（沿用Yolo v1思想）</li>
+<li>pass through层（信息融合）</li>
+<li>多尺度输入训练<h3 id="优-缺点-5"><a href="#优-缺点-5" class="headerlink" title="优/缺点"></a>优/缺点</h3></li>
+<li>优点</li>
+</ol>
+<ul>
+<li>引入了其他文章的点，性能提升很多</li>
+</ul>
+<ol start="2">
+<li>缺点</li>
+</ol>
+<ul>
+<li>对小物体的检测仍然不友好</li>
+</ul>
+<h2 id="YOLO-v3-2017"><a href="#YOLO-v3-2017" class="headerlink" title="YOLO v3 - 2017"></a>YOLO v3 - 2017</h2><h3 id="网络结构-6"><a href="#网络结构-6" class="headerlink" title="网络结构"></a>网络结构</h3><h3 id="特点-改进点-6"><a href="#特点-改进点-6" class="headerlink" title="特点/改进点"></a>特点/改进点</h3><ol>
+<li>使用了FPN结构</li>
+<li>DarkNet-53</li>
+<li>Loss Function: softmax -&gt; logistic loss<h3 id="优-缺点-6"><a href="#优-缺点-6" class="headerlink" title="优/缺点"></a>优/缺点</h3></li>
+<li>优点</li>
+</ol>
+<ul>
+<li>对小物体的检测有很好的改善</li>
+<li>性能提升</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/10/faster-rcnn-detection/" rel="next" title="Faster-rcnn-NIPS2015-detection">
+                <i class="fa fa-chevron-left"></i> Faster-rcnn-NIPS2015-detection
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/16/Algo-List/" rel="prev" title="Algo-List">
+                Algo-List <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="LJK">
+            
+              <p class="site-author-name" itemprop="name">LJK</p>
+              <p class="site-description motion-element" itemprop="description">正值年少，撸铁，撸串，撸代码！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标检测（待完善）"><span class="nav-number">1.</span> <span class="nav-text">目标检测（待完善）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简述"><span class="nav-number">1.1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-CNN-2013-11-mAP-58-5"><span class="nav-number">1.2.</span> <span class="nav-text">R-CNN - 2013.11 - mAP:58.5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-改进点"><span class="nav-number">1.2.2.</span> <span class="nav-text">特点/改进点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优-缺点"><span class="nav-number">1.2.3.</span> <span class="nav-text">优/缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fast-RCNN-2015-04-mAP-70-fps-0-5"><span class="nav-number">1.3.</span> <span class="nav-text">Fast RCNN - 2015.04 - mAP:70,fps:0.5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-改进点-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">特点/改进点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优-缺点-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">优/缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v1-2015-06-mAP-63-4-fps-45"><span class="nav-number">1.4.</span> <span class="nav-text">YOLO v1 - 2015.06 - mAP:63.4,fps:45</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-改进点-2"><span class="nav-number">1.4.2.</span> <span class="nav-text">特点/改进点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优-缺点-2"><span class="nav-number">1.4.3.</span> <span class="nav-text">优/缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-RCNN-2015-06-mAP-73-2-fps-7"><span class="nav-number">1.5.</span> <span class="nav-text">Faster RCNN - 2015.06 - mAP:73.2,fps:7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-3"><span class="nav-number">1.5.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-改进点-3"><span class="nav-number">1.5.2.</span> <span class="nav-text">特点/改进点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优-缺点-3"><span class="nav-number">1.5.3.</span> <span class="nav-text">优/缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD-2015-12-mAP-72-1-fps-58"><span class="nav-number">1.6.</span> <span class="nav-text">SSD - 2015.12 - mAP:72.1,fps:58</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-4"><span class="nav-number">1.6.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-改进点-4"><span class="nav-number">1.6.2.</span> <span class="nav-text">特点/改进点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优-缺点-4"><span class="nav-number">1.6.3.</span> <span class="nav-text">优/缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v2-2016"><span class="nav-number">1.7.</span> <span class="nav-text">YOLO v2 - 2016</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-5"><span class="nav-number">1.7.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-改进点-5"><span class="nav-number">1.7.2.</span> <span class="nav-text">特点/改进点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优-缺点-5"><span class="nav-number">1.7.3.</span> <span class="nav-text">优/缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v3-2017"><span class="nav-number">1.8.</span> <span class="nav-text">YOLO v3 - 2017</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构-6"><span class="nav-number">1.8.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-改进点-6"><span class="nav-number">1.8.2.</span> <span class="nav-text">特点/改进点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优-缺点-6"><span class="nav-number">1.8.3.</span> <span class="nav-text">优/缺点</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LJK</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+</span>
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

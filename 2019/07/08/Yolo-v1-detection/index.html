@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/07/08/Yolo-v1-detection/train.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/07/08/Yolo-v1-detection/predict.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/07/08/Yolo-v1-detection/loss.jpg">
-<meta property="og:updated_time" content="2019-07-09T08:49:23.235Z">
+<meta property="og:updated_time" content="2019-07-10T12:42:02.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yolo-v1-CVPR2015-detection">
 <meta name="twitter:description" content="Yolo v1 - 2015 Yolo-v1：You Only Look Once, Unified, Real-Time Object Detection. Paper：https://arxiv.org/abs/1506.02640 Code: https://github.com/gliese581gg/YOLO_tensorflow  Overview 经典的one-stage。直接对原图">
@@ -386,7 +386,7 @@
 <a id="more"></a>
 <h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol>
 <li>DPM采用不同大小和比例（宽高比）的窗口在整张图片上以一定的步长进行滑动，然后对这些窗口对应的区域做图像分类，来实现对整张图片的检测。DPM的缺点，目标大小未知，需要使用不同的大小/比例，步长，计算量很大。</li>
-<li>RCNN使用卷积的特性，减少了滑动窗口的计算量，但是仅有一个固定大小和步长的窗口。</li>
+<li>RCNN使用selective search的方法仍然耗时。</li>
 </ol>
 <h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><ol>
 <li>Yolo直接将image分成nxn的网格，然后根据卷积生成相同大小的feature map，feature map上每个元素预测对应单元格内的分类/置信度/bbox偏移。</li>
@@ -542,7 +542,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -553,7 +553,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -564,7 +564,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
