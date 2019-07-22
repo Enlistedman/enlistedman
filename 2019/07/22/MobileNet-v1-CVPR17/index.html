@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="model zoo,">
 
 
 
@@ -94,16 +94,18 @@
 
 
 
-<meta name="description" content="正值年少，撸铁，撸串，撸代码！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LJK&#39; Notes">
-<meta property="og:url" content="http://yoursite.com/categories/summary/index.html">
+<meta name="description" content="MobileNet-v1Overview 针对移动端设计，采用depth-wise separable convolutions减少网络的参数量，提升运算速度。">
+<meta name="keywords" content="model zoo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MobileNet-v1-CVPR17">
+<meta property="og:url" content="http://yoursite.com/2019/07/22/MobileNet-v1-CVPR17/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="正值年少，撸铁，撸串，撸代码！">
+<meta property="og:description" content="MobileNet-v1Overview 针对移动端设计，采用depth-wise separable convolutions减少网络的参数量，提升运算速度。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-22T10:59:42.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LJK&#39; Notes">
-<meta name="twitter:description" content="正值年少，撸铁，撸串，撸代码！">
+<meta name="twitter:title" content="MobileNet-v1-CVPR17">
+<meta name="twitter:description" content="MobileNet-v1Overview 针对移动端设计，采用depth-wise separable convolutions减少网络的参数量，提升运算速度。">
 
 
 
@@ -133,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/summary/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/22/MobileNet-v1-CVPR17/">
 
 
 
 
 
-  <title>分类: summary | LJK' Notes</title>
+  <title>MobileNet-v1-CVPR17 | LJK' Notes</title>
   
 
 
@@ -158,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <a href="https://github.com/enlistedman"><img style="position: absolute; top: 0; right: 0;border: 0;" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
@@ -264,53 +266,192 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>summary<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/22/MobileNet-v1-CVPR17/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LJK">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LJK' Notes">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/05/19/Tracking-Summary/" itemprop="url">
-              
-                <span itemprop="name">Tracking-Summary</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">MobileNet-v1-CVPR17</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-19T21:56:21+08:00" content="2019-05-19">
-          05-19
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-22T16:26:49+08:00">
+                2019-07-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/model-zoo/" itemprop="url" rel="index">
+                    <span itemprop="name">model zoo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <h1 id="MobileNet-v1"><a href="#MobileNet-v1" class="headerlink" title="MobileNet-v1"></a>MobileNet-v1</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>针对移动端设计，采用depth-wise separable convolutions减少网络的参数量，提升运算速度。</li>
+</ol>
+<a id="more"></a>
+<h2 id="why"><a href="#why" class="headerlink" title="why"></a>why</h2><ol>
+<li>针对移动端设备设计的网络，减少模型的参数量，提升运算速度。</li>
+</ol>
+<h2 id="what"><a href="#what" class="headerlink" title="what"></a>what</h2><ol>
+<li>改变卷积方式，采用depth-wise separable convolutions，可以减少参数量，提升运算速度。</li>
+<li><strong>标准卷积</strong><br>*每个卷积核，对feature map中的每个channels进行卷积计算，然后再对应元素相加。</li>
+<li><strong>depth-wise separable卷积</strong><br>将卷积分为两步 :    </li>
+</ol>
+<ul>
+<li>depth-wise conv ：逐通道卷积。一个卷积核负责一个通道，每个卷积核只与一个channel卷积，使用channels个卷积核。</li>
+<li>point-wise conv ：使用1x1的卷积，将depth-wise的结果进行融合，输出channels为1x1卷积的个数。</li>
+</ul>
+<ol start="4">
+<li><strong>参数量</strong></li>
+</ol>
+<ul>
+<li>假设输入feature map的大小为Din <em> Din </em> M，输出的feature map的大小为Dout <em> Dout </em> N，卷积核的大小为Dk * Dk</li>
+<li>标准卷积的参数量：Dk <em> Dk </em> M * N</li>
+<li>可分离卷积的参数量：Dk <em> Dk </em> M + 1 <em> 1 </em>  M * N</li>
+</ul>
+<h2 id="how"><a href="#how" class="headerlink" title="how"></a>how</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/model-zoo/" rel="tag"># model zoo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/21/Algo-DP/" rel="next" title="Algo-DP">
+                <i class="fa fa-chevron-left"></i> Algo-DP
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -318,6 +459,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -338,8 +483,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -408,6 +562,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MobileNet-v1"><span class="nav-number">1.</span> <span class="nav-text">MobileNet-v1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -561,6 +731,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
