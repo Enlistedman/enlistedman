@@ -107,7 +107,11 @@
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Mobile-Video-Object-CVPR18/Conv-LSTM.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Mobile-Video-Object-CVPR18/b_t.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Mobile-Video-Object-CVPR18/BottleNeck-LSTM.PNG">
-<meta property="og:updated_time" content="2019-08-01T02:13:21.870Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/31/Mobile-Video-Object-CVPR18/single-lstm-network.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/31/Mobile-Video-Object-CVPR18/single-LSTM.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/31/Mobile-Video-Object-CVPR18/layers-compare.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/31/Mobile-Video-Object-CVPR18/multi-LSTMs.PNG">
+<meta property="og:updated_time" content="2019-08-01T03:52:24.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mobile-Video-Object-CVPR18">
 <meta name="twitter:description" content="Mobile Video Object Detection with Temporally-Aware FeatureOverview 构建Conv Bottleneck-LSTM，并将Bottleneck-LSTM与one stage检测相结合。其中，Bottleneck-LSTM借鉴了深度可分离卷积和bottleneck。 在video detection中的速度，相比现存检测算快，FPS为1">
@@ -357,6 +361,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
 
@@ -401,10 +410,23 @@
 <ul>
 <li>Conv LSTM的定义。<br>其中，M，N分别为LSTM输入/输出的通道数。LSTM将x_t和h_t-1(featue map)进行channel-wise操作，输出h_t和c_t，W(j,k)⭐X代表深度可分离卷积操作，j表示输入通道，k表示输出通道，o表示矩阵对应元素相乘，∮表示ReLU激活函数。<br><img src="/2019/07/31/Mobile-Video-Object-CVPR18/Conv-LSTM.PNG" alt="Conv-LSTM" title="Conv-LSTM"></li>
 <li>使用如下的b_t代替所有门的输入。<br><img src="/2019/07/31/Mobile-Video-Object-CVPR18/b_t.PNG" alt="b_t" title="b_t"></li>
-<li>添加超参数a_base = a,a_lstm = 0.5a,a_ssd = 0.25a来分别控制不同网络模块通道维度，从而来控制网络的计算量。<br><img src="/2019/07/31/Mobile-Video-Object-CVPR18/BottleNeck-LSTM.PNG" alt="BottleNeck-LSTM" title="BottleNeck-LSTM"></li>
+<li>添加通道调整超参数a_base = a,a_lstm = 0.5a,a_ssd = 0.25a来分别控制不同网络模块通道维度，从而来控制网络的计算量。<br><img src="/2019/07/31/Mobile-Video-Object-CVPR18/BottleNeck-LSTM.PNG" alt="BottleNeck-LSTM" title="BottleNeck-LSTM"></li>
 <li>优势：减少了标准LSTM中的计算；BottleNeck-LSTM的网络结构更深，效果更好。</li>
 </ul>
-<h2 id="result"><a href="#result" class="headerlink" title="result"></a>result</h2>
+<ol start="4">
+<li>具体实现</li>
+</ol>
+<ul>
+<li>单个LSTM模块的网络结构。</li>
+<li><img src="/2019/07/31/Mobile-Video-Object-CVPR18/single-lstm-network.PNG" alt="single-lstm-network" title="single-lstm-network"></li>
+<li>首先finetune 无LSTM的SSD网络，freeze基准网络（到conv13）,然后在train的时候添加LSTM模块。最终在conv13之后的所有feature map后都添加了LSTM模块作为最终模型。</li>
+</ul>
+<h2 id="result"><a href="#result" class="headerlink" title="result"></a>result</h2><ol>
+<li>单个LSTM模块，mAP相对提升3.2%<br><img src="/2019/07/31/Mobile-Video-Object-CVPR18/single-LSTM.PNG" alt="single-LSTM" title="single-LSTM"></li>
+<li>单个LSTM模块，在参数量，和计算量方面的对比，大约可以减少10-20倍的参数量，减少20倍左右的计算量。其中MAC代表multi-adds。<br><img src="/2019/07/31/Mobile-Video-Object-CVPR18/layers-compare.PNG" alt="deferent layers" title="deferent layers"></li>
+<li>多个LSTM模块，LSTM模块的重复堆叠没有提升，多层放置LSTM的效果会比单个放置提高0.9%，计算量不会有太大变化。<br><img src="/2019/07/31/Mobile-Video-Object-CVPR18/multi-LSTMs.PNG" alt="multi-LSTMs" title="multi-LSTMs"></li>
+</ol>
+
       
     </div>
     
@@ -434,8 +456,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/31/Interview-Summary/" rel="next" title="Interview-Summary">
-                <i class="fa fa-chevron-left"></i> Interview-Summary
+              <a href="/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/" rel="next" title="Bottleneck-LSTM-Video-Object-CVPR18">
+                <i class="fa fa-chevron-left"></i> Bottleneck-LSTM-Video-Object-CVPR18
               </a>
             
           </div>
@@ -443,6 +465,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/01/Memory-Guided-Video-Detection-CVPR19/" rel="prev" title="Memory-Guided-Video-Detection-CVPR19">
+                Memory-Guided-Video-Detection-CVPR19 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -521,7 +547,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -603,7 +629,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
@@ -621,18 +647,30 @@
   <span class="post-meta-divider">|</span>
 
 
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>次
+<span id="busuanzi_container_site_uv">
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </span>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
 </div>
 
-
-
-
-        
 
 
 
