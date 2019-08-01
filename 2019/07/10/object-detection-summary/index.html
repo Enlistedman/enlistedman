@@ -81,7 +81,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="objection,">
 
 
 
@@ -95,21 +95,22 @@
 
 
 <meta name="description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
+<meta name="keywords" content="objection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="object-detection-summary">
-<meta property="og:url" content="http://yoursite.com/2019/07/10/object-detection-summary/index.html">
+<meta property="og:title" content="Object Detection Summary">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/Object-Detection-Summary/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
 <meta property="og:description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/RCNN.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/YOLOV1.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/FASTERRCNN.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/SSD.PNG">
-<meta property="og:updated_time" content="2019-07-21T10:35:03.058Z">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/Object-Detection-Summary/RCNN.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/Object-Detection-Summary/YOLOV1.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/Object-Detection-Summary/FASTERRCNN.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/Object-Detection-Summary/SSD.PNG">
+<meta property="og:updated_time" content="2019-08-01T01:56:38.351Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="object-detection-summary">
+<meta name="twitter:title" content="Object Detection Summary">
 <meta name="twitter:description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/10/object-detection-summary/RCNN.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/10/Object-Detection-Summary/RCNN.jpg">
 
 
 
@@ -139,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/10/object-detection-summary/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/Object-Detection-Summary/">
 
 
 
 
 
-  <title>object-detection-summary | LJK' Notes</title>
+  <title>Object Detection Summary | LJK' Notes</title>
   
 
 
@@ -284,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/object-detection-summary/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/Object-Detection-Summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -301,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">object-detection-summary</h1>
+          <h1 class="post-title" itemprop="name headline">Object Detection Summary</h1>
         
 
         <div class="post-meta">
@@ -323,6 +324,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/objection/" itemprop="url" rel="index">
+                    <span itemprop="name">objection</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -367,7 +390,7 @@
 <li>代表：R-CNN，Fast R-CNN, Faster R-CNN</li>
 </ul>
 <a id="more"></a>
-<h2 id="R-CNN-2013-11-mAP-58-5"><a href="#R-CNN-2013-11-mAP-58-5" class="headerlink" title="R-CNN - 2013.11 - mAP:58.5"></a>R-CNN - 2013.11 - mAP:58.5</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/RCNN.jpg" alt="RCNN" title="RCNN">   </p>
+<h2 id="R-CNN-2013-11-mAP-58-5"><a href="#R-CNN-2013-11-mAP-58-5" class="headerlink" title="R-CNN - 2013.11 - mAP:58.5"></a>R-CNN - 2013.11 - mAP:58.5</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/Object-Detection-Summary/RCNN.jpg" alt="RCNN" title="RCNN">   </p>
 <ol>
 <li><strong>步骤</strong>  </li>
 </ol>
@@ -400,7 +423,7 @@
 <li>selective search仍然十分耗时</li>
 <li>存在大量得重复计算</li>
 </ul>
-<h2 id="Fast-RCNN-2015-04-mAP-70-fps-0-5"><a href="#Fast-RCNN-2015-04-mAP-70-fps-0-5" class="headerlink" title="Fast RCNN - 2015.04 - mAP:70,fps:0.5"></a>Fast RCNN - 2015.04 - mAP:70,fps:0.5</h2><h3 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h3><h3 id="特点-改进点-1"><a href="#特点-改进点-1" class="headerlink" title="特点/改进点"></a>特点/改进点</h3><h3 id="优-缺点-1"><a href="#优-缺点-1" class="headerlink" title="优/缺点"></a>优/缺点</h3><h2 id="YOLO-v1-2015-06-mAP-63-4-fps-45"><a href="#YOLO-v1-2015-06-mAP-63-4-fps-45" class="headerlink" title="YOLO v1 - 2015.06 - mAP:63.4,fps:45"></a>YOLO v1 - 2015.06 - mAP:63.4,fps:45</h2><h3 id="网络结构-2"><a href="#网络结构-2" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/YOLOV1.PNG" alt="Yolo v1" title="Yolo v1">   </p>
+<h2 id="Fast-RCNN-2015-04-mAP-70-fps-0-5"><a href="#Fast-RCNN-2015-04-mAP-70-fps-0-5" class="headerlink" title="Fast RCNN - 2015.04 - mAP:70,fps:0.5"></a>Fast RCNN - 2015.04 - mAP:70,fps:0.5</h2><h3 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h3><h3 id="特点-改进点-1"><a href="#特点-改进点-1" class="headerlink" title="特点/改进点"></a>特点/改进点</h3><h3 id="优-缺点-1"><a href="#优-缺点-1" class="headerlink" title="优/缺点"></a>优/缺点</h3><h2 id="YOLO-v1-2015-06-mAP-63-4-fps-45"><a href="#YOLO-v1-2015-06-mAP-63-4-fps-45" class="headerlink" title="YOLO v1 - 2015.06 - mAP:63.4,fps:45"></a>YOLO v1 - 2015.06 - mAP:63.4,fps:45</h2><h3 id="网络结构-2"><a href="#网络结构-2" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/Object-Detection-Summary/YOLOV1.PNG" alt="Yolo v1" title="Yolo v1">   </p>
 <ol>
 <li><strong>步骤</strong></li>
 </ol>
@@ -424,7 +447,7 @@
 <li>定位不精准</li>
 <li>对小物体不友好</li>
 </ul>
-<h2 id="Faster-RCNN-2015-06-mAP-73-2-fps-7"><a href="#Faster-RCNN-2015-06-mAP-73-2-fps-7" class="headerlink" title="Faster RCNN - 2015.06 - mAP:73.2,fps:7"></a>Faster RCNN - 2015.06 - mAP:73.2,fps:7</h2><h3 id="网络结构-3"><a href="#网络结构-3" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/FASTERRCNN.PNG" alt="Faster RCNN" title="Faster RCNN"></p>
+<h2 id="Faster-RCNN-2015-06-mAP-73-2-fps-7"><a href="#Faster-RCNN-2015-06-mAP-73-2-fps-7" class="headerlink" title="Faster RCNN - 2015.06 - mAP:73.2,fps:7"></a>Faster RCNN - 2015.06 - mAP:73.2,fps:7</h2><h3 id="网络结构-3"><a href="#网络结构-3" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/Object-Detection-Summary/FASTERRCNN.PNG" alt="Faster RCNN" title="Faster RCNN"></p>
 <ol>
 <li><strong>步骤</strong></li>
 </ol>
@@ -447,7 +470,7 @@
 <ul>
 <li>速度比Yolo慢</li>
 </ul>
-<h2 id="SSD-2015-12-mAP-72-1-fps-58"><a href="#SSD-2015-12-mAP-72-1-fps-58" class="headerlink" title="SSD - 2015.12 - mAP:72.1,fps:58"></a>SSD - 2015.12 - mAP:72.1,fps:58</h2><h3 id="网络结构-4"><a href="#网络结构-4" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/SSD.PNG" alt="SSD" title="SSD"></p>
+<h2 id="SSD-2015-12-mAP-72-1-fps-58"><a href="#SSD-2015-12-mAP-72-1-fps-58" class="headerlink" title="SSD - 2015.12 - mAP:72.1,fps:58"></a>SSD - 2015.12 - mAP:72.1,fps:58</h2><h3 id="网络结构-4"><a href="#网络结构-4" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/Object-Detection-Summary/SSD.PNG" alt="SSD" title="SSD"></p>
 <ol>
 <li><strong>步骤</strong></li>
 </ol>
@@ -511,6 +534,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/objection/" rel="tag"># objection</a>
+          
+        </div>
+      
 
       
       
@@ -520,7 +549,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/10/faster-rcnn-detection/" rel="next" title="Faster-rcnn-NIPS2015-detection">
+              <a href="/2019/07/10/Faster-rcnn-detection/" rel="next" title="Faster-rcnn-NIPS2015-detection">
                 <i class="fa fa-chevron-left"></i> Faster-rcnn-NIPS2015-detection
               </a>
             
@@ -530,8 +559,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/22/MobileNet-v1-CVPR17/" rel="prev" title="MobileNet-v1-CVPR17">
-                MobileNet-v1-CVPR17 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/31/Interview-Summary/" rel="prev" title="Interview-Summary">
+                Interview-Summary <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +640,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -622,7 +651,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -633,7 +662,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
