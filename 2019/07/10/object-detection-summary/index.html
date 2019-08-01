@@ -98,19 +98,19 @@
 <meta name="keywords" content="objection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Object Detection Summary">
-<meta property="og:url" content="http://yoursite.com/2019/07/10/object-Detection-Summary/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/07/10/object-detection-summary/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
 <meta property="og:description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-Detection-Summary/RCNN.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-Detection-Summary/YOLOV1.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-Detection-Summary/FASTERRCNN.PNG">
-<meta property="og:image" content="http://yoursite.com/2019/07/10/object-Detection-Summary/SSD.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/RCNN.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/YOLOV1.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/FASTERRCNN.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/07/10/object-detection-summary/SSD.PNG">
 <meta property="og:updated_time" content="2019-08-01T01:56:38.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Object Detection Summary">
 <meta name="twitter:description" content="目标检测（待完善）简述 one-stage   主要思想：均匀地在图片的不同位置进行密集抽样，抽样时可以采用不同尺度和长宽比，然后利用CNN提取特征后直接进行分类与回归，整个过程只需要一步 代表：Yolo，SSD 特点：速度快，准确率一般没有two-stage高   two-stage   主要思想：一阶段生成proposals，二阶段对这些proposals进行分类和回归 代表：R-CNN，Fa">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/10/object-Detection-Summary/RCNN.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/07/10/object-detection-summary/RCNN.jpg">
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/10/object-Detection-Summary/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/10/object-detection-summary/">
 
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/object-Detection-Summary/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/object-detection-summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LJK">
@@ -355,8 +355,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/07/10/object-Detection-Summary/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/10/object-Detection-Summary/" itemprop="commentCount"></span>
+                <a href="/2019/07/10/object-detection-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/10/object-detection-summary/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -410,7 +410,7 @@
 <li>代表：R-CNN，Fast R-CNN, Faster R-CNN</li>
 </ul>
 <a id="more"></a>
-<h2 id="R-CNN-2013-11-mAP-58-5"><a href="#R-CNN-2013-11-mAP-58-5" class="headerlink" title="R-CNN - 2013.11 - mAP:58.5"></a>R-CNN - 2013.11 - mAP:58.5</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-Detection-Summary/RCNN.jpg" alt="RCNN" title="RCNN">   </p>
+<h2 id="R-CNN-2013-11-mAP-58-5"><a href="#R-CNN-2013-11-mAP-58-5" class="headerlink" title="R-CNN - 2013.11 - mAP:58.5"></a>R-CNN - 2013.11 - mAP:58.5</h2><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/RCNN.jpg" alt="RCNN" title="RCNN">   </p>
 <ol>
 <li><strong>步骤</strong>  </li>
 </ol>
@@ -443,7 +443,7 @@
 <li>selective search仍然十分耗时</li>
 <li>存在大量得重复计算</li>
 </ul>
-<h2 id="Fast-RCNN-2015-04-mAP-70-fps-0-5"><a href="#Fast-RCNN-2015-04-mAP-70-fps-0-5" class="headerlink" title="Fast RCNN - 2015.04 - mAP:70,fps:0.5"></a>Fast RCNN - 2015.04 - mAP:70,fps:0.5</h2><h3 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h3><h3 id="特点-改进点-1"><a href="#特点-改进点-1" class="headerlink" title="特点/改进点"></a>特点/改进点</h3><h3 id="优-缺点-1"><a href="#优-缺点-1" class="headerlink" title="优/缺点"></a>优/缺点</h3><h2 id="YOLO-v1-2015-06-mAP-63-4-fps-45"><a href="#YOLO-v1-2015-06-mAP-63-4-fps-45" class="headerlink" title="YOLO v1 - 2015.06 - mAP:63.4,fps:45"></a>YOLO v1 - 2015.06 - mAP:63.4,fps:45</h2><h3 id="网络结构-2"><a href="#网络结构-2" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-Detection-Summary/YOLOV1.PNG" alt="Yolo v1" title="Yolo v1">   </p>
+<h2 id="Fast-RCNN-2015-04-mAP-70-fps-0-5"><a href="#Fast-RCNN-2015-04-mAP-70-fps-0-5" class="headerlink" title="Fast RCNN - 2015.04 - mAP:70,fps:0.5"></a>Fast RCNN - 2015.04 - mAP:70,fps:0.5</h2><h3 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h3><h3 id="特点-改进点-1"><a href="#特点-改进点-1" class="headerlink" title="特点/改进点"></a>特点/改进点</h3><h3 id="优-缺点-1"><a href="#优-缺点-1" class="headerlink" title="优/缺点"></a>优/缺点</h3><h2 id="YOLO-v1-2015-06-mAP-63-4-fps-45"><a href="#YOLO-v1-2015-06-mAP-63-4-fps-45" class="headerlink" title="YOLO v1 - 2015.06 - mAP:63.4,fps:45"></a>YOLO v1 - 2015.06 - mAP:63.4,fps:45</h2><h3 id="网络结构-2"><a href="#网络结构-2" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/YOLOV1.PNG" alt="Yolo v1" title="Yolo v1">   </p>
 <ol>
 <li><strong>步骤</strong></li>
 </ol>
@@ -467,7 +467,7 @@
 <li>定位不精准</li>
 <li>对小物体不友好</li>
 </ul>
-<h2 id="Faster-RCNN-2015-06-mAP-73-2-fps-7"><a href="#Faster-RCNN-2015-06-mAP-73-2-fps-7" class="headerlink" title="Faster RCNN - 2015.06 - mAP:73.2,fps:7"></a>Faster RCNN - 2015.06 - mAP:73.2,fps:7</h2><h3 id="网络结构-3"><a href="#网络结构-3" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-Detection-Summary/FASTERRCNN.PNG" alt="Faster RCNN" title="Faster RCNN"></p>
+<h2 id="Faster-RCNN-2015-06-mAP-73-2-fps-7"><a href="#Faster-RCNN-2015-06-mAP-73-2-fps-7" class="headerlink" title="Faster RCNN - 2015.06 - mAP:73.2,fps:7"></a>Faster RCNN - 2015.06 - mAP:73.2,fps:7</h2><h3 id="网络结构-3"><a href="#网络结构-3" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/FASTERRCNN.PNG" alt="Faster RCNN" title="Faster RCNN"></p>
 <ol>
 <li><strong>步骤</strong></li>
 </ol>
@@ -490,7 +490,7 @@
 <ul>
 <li>速度比Yolo慢</li>
 </ul>
-<h2 id="SSD-2015-12-mAP-72-1-fps-58"><a href="#SSD-2015-12-mAP-72-1-fps-58" class="headerlink" title="SSD - 2015.12 - mAP:72.1,fps:58"></a>SSD - 2015.12 - mAP:72.1,fps:58</h2><h3 id="网络结构-4"><a href="#网络结构-4" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-Detection-Summary/SSD.PNG" alt="SSD" title="SSD"></p>
+<h2 id="SSD-2015-12-mAP-72-1-fps-58"><a href="#SSD-2015-12-mAP-72-1-fps-58" class="headerlink" title="SSD - 2015.12 - mAP:72.1,fps:58"></a>SSD - 2015.12 - mAP:72.1,fps:58</h2><h3 id="网络结构-4"><a href="#网络结构-4" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="/2019/07/10/object-detection-summary/SSD.PNG" alt="SSD" title="SSD"></p>
 <ol>
 <li><strong>步骤</strong></li>
 </ol>
@@ -927,8 +927,8 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/07/10/object-Detection-Summary/';
-          this.page.identifier = '2019/07/10/object-Detection-Summary/';
+          this.page.url = 'http://yoursite.com/2019/07/10/object-detection-summary/';
+          this.page.identifier = '2019/07/10/object-detection-summary/';
           this.page.title = 'Object Detection Summary';
         };
         var d = document, s = d.createElement('script');
