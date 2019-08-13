@@ -94,23 +94,23 @@
 
 
 
-<meta name="description" content="Looking Fast and Slow: Memory-Guided Mobile Video Object DetectionOverview 提出了memory-guided的多特征网络提取的网络结构，可以减少冗余计算。 使用Double Q-learning强化学习策略来执行memory更新，进行特征提取网络的选择。 在移动设备上可以实现高精度，高速度（70fps）。">
+<meta name="description" content="Memory-Guided-Video-Detection-CVPR19 Looking Fast and Slow: Memory-Guided Mobile Video Object Detection Paper: https://arxiv.org/abs/1903.10172 Code: https://github.com/tensorflow/models/tree/master/r">
 <meta name="keywords" content="detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Memory-Guided-Video-Detection-CVPR19">
 <meta property="og:url" content="http://yoursite.com/2019/08/01/Memory-Guided-Video-Detection-CVPR19/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Looking Fast and Slow: Memory-Guided Mobile Video Object DetectionOverview 提出了memory-guided的多特征网络提取的网络结构，可以减少冗余计算。 使用Double Q-learning强化学习策略来执行memory更新，进行特征提取网络的选择。 在移动设备上可以实现高精度，高速度（70fps）。">
+<meta property="og:description" content="Memory-Guided-Video-Detection-CVPR19 Looking Fast and Slow: Memory-Guided Mobile Video Object Detection Paper: https://arxiv.org/abs/1903.10172 Code: https://github.com/tensorflow/models/tree/master/r">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/08/01/Memory-Guided-Video-Detection-CVPR19/model.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/08/01/Memory-Guided-Video-Detection-CVPR19/speedoptimizedLSTMcell.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/08/01/Memory-Guided-Video-Detection-CVPR19/reward-func.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/08/01/Memory-Guided-Video-Detection-CVPR19/reforcement-netword.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/08/01/Memory-Guided-Video-Detection-CVPR19/result.PNG">
-<meta property="og:updated_time" content="2019-08-01T10:04:33.276Z">
+<meta property="og:updated_time" content="2019-08-13T03:52:48.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Memory-Guided-Video-Detection-CVPR19">
-<meta name="twitter:description" content="Looking Fast and Slow: Memory-Guided Mobile Video Object DetectionOverview 提出了memory-guided的多特征网络提取的网络结构，可以减少冗余计算。 使用Double Q-learning强化学习策略来执行memory更新，进行特征提取网络的选择。 在移动设备上可以实现高精度，高速度（70fps）。">
+<meta name="twitter:description" content="Memory-Guided-Video-Detection-CVPR19 Looking Fast and Slow: Memory-Guided Mobile Video Object Detection Paper: https://arxiv.org/abs/1903.10172 Code: https://github.com/tensorflow/models/tree/master/r">
 <meta name="twitter:image" content="http://yoursite.com/2019/08/01/Memory-Guided-Video-Detection-CVPR19/model.PNG">
 
 
@@ -395,8 +395,13 @@
       
 
       
-        <h1 id="Looking-Fast-and-Slow-Memory-Guided-Mobile-Video-Object-Detection"><a href="#Looking-Fast-and-Slow-Memory-Guided-Mobile-Video-Object-Detection" class="headerlink" title="Looking Fast and Slow: Memory-Guided Mobile Video Object Detection"></a>Looking Fast and Slow: Memory-Guided Mobile Video Object Detection</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
-<li>提出了memory-guided的多特征网络提取的网络结构，可以减少冗余计算。</li>
+        <h1 id="Memory-Guided-Video-Detection-CVPR19"><a href="#Memory-Guided-Video-Detection-CVPR19" class="headerlink" title="Memory-Guided-Video-Detection-CVPR19"></a>Memory-Guided-Video-Detection-CVPR19</h1><ul>
+<li>Looking Fast and Slow: Memory-Guided Mobile Video Object Detection</li>
+<li>Paper: <a href="https://arxiv.org/abs/1903.10172" target="_blank" rel="noopener">https://arxiv.org/abs/1903.10172</a></li>
+<li>Code: <a href="https://github.com/tensorflow/models/tree/master/research" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/research</a></li>
+</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>提出了memory-guided的多特征网络提取的网络结构，使用快/慢特征提取网络分别提取不同帧特征，可以减少冗余计算。</li>
 <li>使用Double Q-learning强化学习策略来执行memory更新，进行特征提取网络的选择。</li>
 <li>在移动设备上可以实现高精度，高速度（70fps）。</li>
 </ol>
@@ -423,7 +428,7 @@
 <ul>
 <li>在bottleneck和output之间添加了skip connection。</li>
 <li>使用channel-wise的方式，将LSTM state等分为G组，然后使用组卷积。</li>
-<li>使用state skip update方法。相当于跳过f1的状态更新，直接使用之前f0的状态。这是因为LSTM缺点，在多次更新之后几乎会完全遗忘之前的状态。<br><img src="/2019/08/01/Memory-Guided-Video-Detection-CVPR19/speedoptimizedLSTMcell.PNG" alt="speed-opt-LSTM-Cell" title="speed-opt-LSTM-Cell"></li>
+<li>使用state skip update方法。相当于跳过f1的状态更新，直接使用之前f0的状态。这是因为LSTM中sigmoid的缺点，在多次更新之后几乎会完全遗忘之前的状态。<br><img src="/2019/08/01/Memory-Guided-Video-Detection-CVPR19/speedoptimizedLSTMcell.PNG" alt="speed-opt-LSTM-Cell" title="speed-opt-LSTM-Cell"></li>
 </ul>
 <ol start="3">
 <li>DDQN寻找自适应交叉策略</li>
@@ -624,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Looking-Fast-and-Slow-Memory-Guided-Mobile-Video-Object-Detection"><span class="nav-number">1.</span> <span class="nav-text">Looking Fast and Slow: Memory-Guided Mobile Video Object Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">1.5.</span> <span class="nav-text">result</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Memory-Guided-Video-Detection-CVPR19"><span class="nav-number">1.</span> <span class="nav-text">Memory-Guided-Video-Detection-CVPR19</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">1.5.</span> <span class="nav-text">result</span></a></li></ol></li></ol></div>
             
 
           </div>

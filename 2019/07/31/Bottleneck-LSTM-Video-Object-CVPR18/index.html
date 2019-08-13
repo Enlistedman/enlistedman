@@ -94,13 +94,13 @@
 
 
 
-<meta name="description" content="Mobile Video Object Detection with Temporally-Aware FeatureOverview 构建Conv Bottleneck-LSTM，并将Bottleneck-LSTM与one stage检测相结合。其中，Bottleneck-LSTM借鉴了深度可分离卷积和bottleneck。 在video detection中的速度，相比现存检测算快，FPS为1">
+<meta name="description" content="Bottleneck-LSTM-Video-Object-Detection-CVPR18 Bottleneck-LSTM：Mobile Video Object Detection with Temporally-Aware Feature  Paper: https://arxiv.org/abs/1711.06368 Code: https://github.com/tensorflow/m">
 <meta name="keywords" content="detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bottleneck-LSTM-Video-Object-CVPR18">
 <meta property="og:url" content="http://yoursite.com/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Mobile Video Object Detection with Temporally-Aware FeatureOverview 构建Conv Bottleneck-LSTM，并将Bottleneck-LSTM与one stage检测相结合。其中，Bottleneck-LSTM借鉴了深度可分离卷积和bottleneck。 在video detection中的速度，相比现存检测算快，FPS为1">
+<meta property="og:description" content="Bottleneck-LSTM-Video-Object-Detection-CVPR18 Bottleneck-LSTM：Mobile Video Object Detection with Temporally-Aware Feature  Paper: https://arxiv.org/abs/1711.06368 Code: https://github.com/tensorflow/m">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/main.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/framework.PNG">
@@ -111,10 +111,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/single-LSTM.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/layers-compare.PNG">
 <meta property="og:image" content="http://yoursite.com/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/multi-LSTMs.PNG">
-<meta property="og:updated_time" content="2019-08-01T14:40:14.744Z">
+<meta property="og:updated_time" content="2019-08-13T03:51:24.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bottleneck-LSTM-Video-Object-CVPR18">
-<meta name="twitter:description" content="Mobile Video Object Detection with Temporally-Aware FeatureOverview 构建Conv Bottleneck-LSTM，并将Bottleneck-LSTM与one stage检测相结合。其中，Bottleneck-LSTM借鉴了深度可分离卷积和bottleneck。 在video detection中的速度，相比现存检测算快，FPS为1">
+<meta name="twitter:description" content="Bottleneck-LSTM-Video-Object-Detection-CVPR18 Bottleneck-LSTM：Mobile Video Object Detection with Temporally-Aware Feature  Paper: https://arxiv.org/abs/1711.06368 Code: https://github.com/tensorflow/m">
 <meta name="twitter:image" content="http://yoursite.com/2019/07/31/Bottleneck-LSTM-Video-Object-CVPR18/main.PNG">
 
 
@@ -399,7 +399,12 @@
       
 
       
-        <h1 id="Mobile-Video-Object-Detection-with-Temporally-Aware-Feature"><a href="#Mobile-Video-Object-Detection-with-Temporally-Aware-Feature" class="headerlink" title="Mobile Video Object Detection with Temporally-Aware Feature"></a>Mobile Video Object Detection with Temporally-Aware Feature</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+        <h1 id="Bottleneck-LSTM-Video-Object-Detection-CVPR18"><a href="#Bottleneck-LSTM-Video-Object-Detection-CVPR18" class="headerlink" title="Bottleneck-LSTM-Video-Object-Detection-CVPR18"></a>Bottleneck-LSTM-Video-Object-Detection-CVPR18</h1><ul>
+<li>Bottleneck-LSTM：Mobile Video Object Detection with Temporally-Aware Feature </li>
+<li>Paper: <a href="https://arxiv.org/abs/1711.06368" target="_blank" rel="noopener">https://arxiv.org/abs/1711.06368</a></li>
+<li>Code: <a href="https://github.com/tensorflow/models/tree/master/research" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/research</a></li>
+</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
 <li>构建Conv Bottleneck-LSTM，并将Bottleneck-LSTM与one stage检测相结合。其中，Bottleneck-LSTM借鉴了深度可分离卷积和bottleneck。</li>
 <li>在video detection中的速度，相比现存检测算快，FPS为15（个人感觉比较慢）。</li>
 </ol>
@@ -634,7 +639,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mobile-Video-Object-Detection-with-Temporally-Aware-Feature"><span class="nav-number">1.</span> <span class="nav-text">Mobile Video Object Detection with Temporally-Aware Feature</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">1.5.</span> <span class="nav-text">result</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bottleneck-LSTM-Video-Object-Detection-CVPR18"><span class="nav-number">1.</span> <span class="nav-text">Bottleneck-LSTM-Video-Object-Detection-CVPR18</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#why"><span class="nav-number">1.2.</span> <span class="nav-text">why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#what"><span class="nav-number">1.3.</span> <span class="nav-text">what</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how"><span class="nav-number">1.4.</span> <span class="nav-text">how</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result"><span class="nav-number">1.5.</span> <span class="nav-text">result</span></a></li></ol></li></ol></div>
             
 
           </div>

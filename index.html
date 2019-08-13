@@ -382,8 +382,13 @@
 
       
         
-          <h1 id="Looking-Fast-and-Slow-Memory-Guided-Mobile-Video-Object-Detection"><a href="#Looking-Fast-and-Slow-Memory-Guided-Mobile-Video-Object-Detection" class="headerlink" title="Looking Fast and Slow: Memory-Guided Mobile Video Object Detection"></a>Looking Fast and Slow: Memory-Guided Mobile Video Object Detection</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
-<li>提出了memory-guided的多特征网络提取的网络结构，可以减少冗余计算。</li>
+          <h1 id="Memory-Guided-Video-Detection-CVPR19"><a href="#Memory-Guided-Video-Detection-CVPR19" class="headerlink" title="Memory-Guided-Video-Detection-CVPR19"></a>Memory-Guided-Video-Detection-CVPR19</h1><ul>
+<li>Looking Fast and Slow: Memory-Guided Mobile Video Object Detection</li>
+<li>Paper: <a href="https://arxiv.org/abs/1903.10172" target="_blank" rel="noopener">https://arxiv.org/abs/1903.10172</a></li>
+<li>Code: <a href="https://github.com/tensorflow/models/tree/master/research" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/research</a></li>
+</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+<li>提出了memory-guided的多特征网络提取的网络结构，使用快/慢特征提取网络分别提取不同帧特征，可以减少冗余计算。</li>
 <li>使用Double Q-learning强化学习策略来执行memory更新，进行特征提取网络的选择。</li>
 <li>在移动设备上可以实现高精度，高速度（70fps）。</li>
 </ol>
@@ -543,7 +548,12 @@
 
       
         
-          <h1 id="Mobile-Video-Object-Detection-with-Temporally-Aware-Feature"><a href="#Mobile-Video-Object-Detection-with-Temporally-Aware-Feature" class="headerlink" title="Mobile Video Object Detection with Temporally-Aware Feature"></a>Mobile Video Object Detection with Temporally-Aware Feature</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
+          <h1 id="Bottleneck-LSTM-Video-Object-Detection-CVPR18"><a href="#Bottleneck-LSTM-Video-Object-Detection-CVPR18" class="headerlink" title="Bottleneck-LSTM-Video-Object-Detection-CVPR18"></a>Bottleneck-LSTM-Video-Object-Detection-CVPR18</h1><ul>
+<li>Bottleneck-LSTM：Mobile Video Object Detection with Temporally-Aware Feature </li>
+<li>Paper: <a href="https://arxiv.org/abs/1711.06368" target="_blank" rel="noopener">https://arxiv.org/abs/1711.06368</a></li>
+<li>Code: <a href="https://github.com/tensorflow/models/tree/master/research" target="_blank" rel="noopener">https://github.com/tensorflow/models/tree/master/research</a></li>
+</ul>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
 <li>构建Conv Bottleneck-LSTM，并将Bottleneck-LSTM与one stage检测相结合。其中，Bottleneck-LSTM借鉴了深度可分离卷积和bottleneck。</li>
 <li>在video detection中的速度，相比现存检测算快，FPS为15（个人感觉比较慢）。</li>
 </ol>
