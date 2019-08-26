@@ -1534,9 +1534,14 @@
 
       
         
-          <h1 id="Canny边缘检测"><a href="#Canny边缘检测" class="headerlink" title="Canny边缘检测"></a>Canny边缘检测</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
-<li>对灰度图像统计阶跃梯度，将跃变位置连接构成图像边缘。</li>
-<li>由于大多数传感器具有低频滤波特性，这样阶跃边缘就会变为斜坡性边缘，强度变化不是瞬间的，所以边缘检测中的第一步是滤波。</li>
+          <h1 id="Canny边缘检测"><a href="#Canny边缘检测" class="headerlink" title="Canny边缘检测"></a>Canny边缘检测</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ul>
+<li><strong>去噪声，算梯度，NMS，定边缘</strong></li>
+</ul>
+<ol>
+<li>使用滤波器平滑图像，过滤噪声。</li>
+<li>计算图像中每个像素点的梯度强度和方向。</li>
+<li>使NMS消除边缘检测带来的杂乱影响。</li>
+<li>使用双阈值法来确定边缘。</li>
 </ol>
           <!--noindex-->
           <div class="post-button text-center">

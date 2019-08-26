@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="Canny边缘检测Overview 对灰度图像统计阶跃梯度，将跃变位置连接构成图像边缘。 由于大多数传感器具有低频滤波特性，这样阶跃边缘就会变为斜坡性边缘，强度变化不是瞬间的，所以边缘检测中的第一步是滤波。">
+<meta name="description" content="Canny边缘检测Overview 去噪声，算梯度，NMS，定边缘   使用滤波器平滑图像，过滤噪声。 计算图像中每个像素点的梯度强度和方向。 使NMS消除边缘检测带来的杂乱影响。 使用双阈值法来确定边缘。">
 <meta name="keywords" content="Canny">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Canny边缘检测">
 <meta property="og:url" content="http://yoursite.com/2019/05/22/canny边缘检测/index.html">
 <meta property="og:site_name" content="LJK&#39; Notes">
-<meta property="og:description" content="Canny边缘检测Overview 对灰度图像统计阶跃梯度，将跃变位置连接构成图像边缘。 由于大多数传感器具有低频滤波特性，这样阶跃边缘就会变为斜坡性边缘，强度变化不是瞬间的，所以边缘检测中的第一步是滤波。">
+<meta property="og:description" content="Canny边缘检测Overview 去噪声，算梯度，NMS，定边缘   使用滤波器平滑图像，过滤噪声。 计算图像中每个像素点的梯度强度和方向。 使NMS消除边缘检测带来的杂乱影响。 使用双阈值法来确定边缘。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-01T14:56:03.457Z">
+<meta property="og:updated_time" content="2019-08-25T07:30:47.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Canny边缘检测">
-<meta name="twitter:description" content="Canny边缘检测Overview 对灰度图像统计阶跃梯度，将跃变位置连接构成图像边缘。 由于大多数传感器具有低频滤波特性，这样阶跃边缘就会变为斜坡性边缘，强度变化不是瞬间的，所以边缘检测中的第一步是滤波。">
+<meta name="twitter:description" content="Canny边缘检测Overview 去噪声，算梯度，NMS，定边缘   使用滤波器平滑图像，过滤噪声。 计算图像中每个像素点的梯度强度和方向。 使NMS消除边缘检测带来的杂乱影响。 使用双阈值法来确定边缘。">
 
 
 
@@ -389,24 +389,29 @@
       
 
       
-        <h1 id="Canny边缘检测"><a href="#Canny边缘检测" class="headerlink" title="Canny边缘检测"></a>Canny边缘检测</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ol>
-<li>对灰度图像统计阶跃梯度，将跃变位置连接构成图像边缘。</li>
-<li>由于大多数传感器具有低频滤波特性，这样阶跃边缘就会变为斜坡性边缘，强度变化不是瞬间的，所以边缘检测中的第一步是滤波。</li>
+        <h1 id="Canny边缘检测"><a href="#Canny边缘检测" class="headerlink" title="Canny边缘检测"></a>Canny边缘检测</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><ul>
+<li><strong>去噪声，算梯度，NMS，定边缘</strong></li>
+</ul>
+<ol>
+<li>使用滤波器平滑图像，过滤噪声。</li>
+<li>计算图像中每个像素点的梯度强度和方向。</li>
+<li>使NMS消除边缘检测带来的杂乱影响。</li>
+<li>使用双阈值法来确定边缘。</li>
 </ol>
 <a id="more"></a>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h3><ol>
-<li>边缘检测的算法主要是基于图像强度的一阶和二阶导数，但导数通常对噪声很敏感，因此必须采用滤波器来改善与噪声有关的边缘检测器的性能。</li>
-<li>常见的滤波算法有：高斯滤波（采用离散化的高斯函数产生一组归一化的高斯核），然后基于高斯核函数对图像灰度矩阵的每一点进行加权求和。<br>高斯核函数：$k(x, x’) = e^{-\frac{||x - x’||^2}{2\sigma^2}}$<br>sigma决定了高斯函数的宽度。高斯函数的性质：①旋转对称性；②每一个邻域像素值权值是随着该点到中心点的距离单调递减的。</li>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h3><ol>
+<li>边缘检测的算法主要是基于图像强度的一阶和二阶导数，但<strong>导数通常对噪声很敏感</strong>，因此必须采用滤波器来改善与噪声有关的边缘检测器的性能。</li>
+<li>常见的滤波算法有：高斯滤波（采用离散化的高斯函数产生一组归一化的高斯核），然后基于高斯核函数 对图像灰度矩阵的每一点进行加权求和。<br>高斯核函数：$k(x, x’) = e^{-\frac{||x - x’||^2}{2\sigma^2}}$<br>sigma决定了高斯函数的宽度。高斯函数的性质：①旋转对称性；②每一个邻域像素值权值是随着该点到中心点的距离单调递减的。</li>
 </ol>
 <h3 id="增强"><a href="#增强" class="headerlink" title="增强"></a>增强</h3><ol>
 <li>确定图像各点邻域强度的变化值，增强算法可以将图像灰度点邻域强度值有显著变化的点凸显出来。</li>
-<li>编程中，可以通过梯度幅值来确定。</li>
+<li>编程中，可以通过<strong>梯度幅值</strong>来确定。</li>
 </ol>
 <h3 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h3><ol>
 <li>经过增强的图像，往往邻域中有很多点的梯度值比较大，而在特定的应用中，这些点并不是我们要找的边缘点，所以应该采用某种方法来对这些点进行取舍。</li>
-<li>实际工程中，常用的方法是通过阈值化方法来检测。</li>
+<li>实际工程中，常用的方法是通过<strong>阈值化</strong>方法来检测。</li>
 </ol>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="对原始图像灰度化"><a href="#对原始图像灰度化" class="headerlink" title="对原始图像灰度化"></a>对原始图像灰度化</h3><ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="对原始图像灰度化"><a href="#对原始图像灰度化" class="headerlink" title="对原始图像灰度化"></a>对原始图像灰度化</h3><ol>
 <li>灰度化就是对图像各个通道的采样值进行加权平均。</li>
 <li>Gray = (R+G+B)/3 或者 Gray = 0.299R+0.587G+0.114B</li>
 </ol>
@@ -421,15 +426,15 @@
 </ol>
 <h3 id="对梯度幅值进行非极大值抑制"><a href="#对梯度幅值进行非极大值抑制" class="headerlink" title="对梯度幅值进行非极大值抑制"></a>对梯度幅值进行非极大值抑制</h3><ol>
 <li>图像梯度幅值矩阵的元素值越大，说明该点的梯度值越大，但不能说明该店就是边缘。</li>
-<li>寻找像素点局部最大值，将非极大值所对应的灰度值置为0。</li>
-<li>非最大抑制是回答这样一个问题：“当前的梯度值在梯度方向上是一个局部最大值吗？” 所以,要把当前位置的梯度值与梯度方向上两侧的梯度值进行比较；</li>
-<li>梯度方向垂直于边缘方向。只能得到C点邻域的8个点的值，而dTmp1和dTmp2并不在其中，要得到这两个值就需要对该两个点两端的已知灰度进行线性插值，也即根据图1中的g1和g2对dTmp1进行插值。</li>
-<li>完成非极大值抑制后，会得到一个二值图像，非边缘的点灰度值均为0，可能为边缘的局部灰度极大值点可设置其灰度为128。</li>
+<li>寻找像素点局部最大值，将非极大值所对应的灰度值置为0。已知该点周围领点的梯度，使用线性插值的方式计算该店梯度方向上的两个端点，判断其是否为极大值，若是，则将其灰度值置为128，否则，将其灰度值置为0.</li>
 <li>这样一个检测结果还是包含了很多由噪声及其他原因造成的假边缘。因此还需要进一步的处理。</li>
 </ol>
 <h3 id="用双阈值算法检测和连接边缘"><a href="#用双阈值算法检测和连接边缘" class="headerlink" title="用双阈值算法检测和连接边缘"></a>用双阈值算法检测和连接边缘</h3><ol>
-<li>在高阈值图像中把边缘链接成轮廓，当到达轮廓的端点时，该算法会在断点的8邻域点中寻找满足低阈值的点，再根据此点收集新的边缘，直到整个图像边缘闭合。</li>
+<li>设定阈值maxval和minval，<strong>梯度</strong>大于maxval的判定为边界，小于minval则舍弃，介于两者之间有边界相连则保留，否则舍弃。</li>
 </ol>
+<ul>
+<li>注：minval/maxval越小，检测出来的边缘信息越多</li>
+</ul>
 
       
     </div>
@@ -623,7 +628,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Canny边缘检测"><span class="nav-number">1.</span> <span class="nav-text">Canny边缘检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">1.2.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波"><span class="nav-number">1.2.1.</span> <span class="nav-text">滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强"><span class="nav-number">1.2.2.</span> <span class="nav-text">增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测"><span class="nav-number">1.2.3.</span> <span class="nav-text">检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.3.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对原始图像灰度化"><span class="nav-number">1.3.1.</span> <span class="nav-text">对原始图像灰度化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对图像进行高斯滤波"><span class="nav-number">1.3.2.</span> <span class="nav-text">对图像进行高斯滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用一阶偏导的有限差分来计算梯度的幅值和方向"><span class="nav-number">1.3.3.</span> <span class="nav-text">用一阶偏导的有限差分来计算梯度的幅值和方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对梯度幅值进行非极大值抑制"><span class="nav-number">1.3.4.</span> <span class="nav-text">对梯度幅值进行非极大值抑制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用双阈值算法检测和连接边缘"><span class="nav-number">1.3.5.</span> <span class="nav-text">用双阈值算法检测和连接边缘</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Canny边缘检测"><span class="nav-number">1.</span> <span class="nav-text">Canny边缘检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波"><span class="nav-number">1.2.1.</span> <span class="nav-text">滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强"><span class="nav-number">1.2.2.</span> <span class="nav-text">增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测"><span class="nav-number">1.2.3.</span> <span class="nav-text">检测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">1.3.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对原始图像灰度化"><span class="nav-number">1.3.1.</span> <span class="nav-text">对原始图像灰度化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对图像进行高斯滤波"><span class="nav-number">1.3.2.</span> <span class="nav-text">对图像进行高斯滤波</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用一阶偏导的有限差分来计算梯度的幅值和方向"><span class="nav-number">1.3.3.</span> <span class="nav-text">用一阶偏导的有限差分来计算梯度的幅值和方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对梯度幅值进行非极大值抑制"><span class="nav-number">1.3.4.</span> <span class="nav-text">对梯度幅值进行非极大值抑制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用双阈值算法检测和连接边缘"><span class="nav-number">1.3.5.</span> <span class="nav-text">用双阈值算法检测和连接边缘</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
